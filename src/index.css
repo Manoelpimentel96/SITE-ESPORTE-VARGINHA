@@ -1,0 +1,23 @@
+@import './styles/design-tokens.css';
+
+* { box-sizing: border-box; }
+html, body, #root { min-width: 320px; min-height: 100%; margin: 0; }
+body {
+  color: var(--color-text);
+  background: var(--color-surface-muted);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+:focus-visible { outline: 2px solid var(--color-brand-700); outline-offset: 2px; }
+::selection { color: #fff; background: var(--color-brand-700); }
+input, select, textarea {
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+input::placeholder, textarea::placeholder { color: var(--color-text-muted); }
+button { transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease; }
+:focus-visible { box-shadow: var(--focus-ring); }

@@ -1,0 +1,28 @@
+
+.admin-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.admin-page-header h1 {
+  margin: 0;
+  color: #17243a;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.admin-page-header p {
+  margin: 8px 0 0;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .admin-page-header h1 {
+    font-size: 22px;
+  }
+}

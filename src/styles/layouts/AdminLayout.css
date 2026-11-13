@@ -1,0 +1,268 @@
+.admin-shell {
+  min-height: 100vh;
+  background: #f4f6fa;
+  color: #172033;
+}
+
+.admin-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  width: 264px;
+  background: #101c32;
+  color: var(--color-surface);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 86px;
+  padding: 20px;
+  border-bottom: 1px solid #26344b;
+}
+
+.brand-symbol {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--color-success);
+  color: var(--color-surface);
+}
+
+.brand-text,
+.profile-information {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brand-text strong {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.brand-text span,
+.profile-information span {
+  color: #9ba9bf;
+  font-size: 10px;
+}
+
+.sidebar-navigation {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 12px;
+}
+
+.navigation-section {
+  margin-bottom: 24px;
+}
+
+.navigation-title {
+  display: block;
+  padding: 0 12px;
+  margin-bottom: 10px;
+  color: #8493aa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.navigation-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  margin-bottom: 4px;
+  padding: 0 12px;
+  border-radius: 7px;
+  color: #c5cede;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navigation-link:hover {
+  background: #1e2d46;
+  color: var(--color-surface);
+}
+
+.navigation-link.active {
+  background: var(--color-success);
+  color: var(--color-surface);
+  font-weight: 600;
+}
+
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 76px;
+  padding: 14px 16px;
+  border-top: 1px solid #26344b;
+}
+
+.profile-avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #263a55;
+}
+
+.profile-information {
+  flex: 1;
+}
+
+.profile-information strong {
+  font-size: 12px;
+}
+
+.sidebar-profile > svg {
+  color: #9ba9bf;
+}
+
+.admin-main {
+  min-height: 100vh;
+  margin-left: 264px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 86px;
+  padding: 18px 30px;
+  background: var(--color-surface);
+  border-bottom: 1px solid #e6eaf0;
+}
+
+.admin-header div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.admin-header strong {
+  font-size: 15px;
+}
+
+.admin-header span {
+  color: #8490a3;
+  font-size: 12px;
+}
+
+.admin-content {
+  padding: 30px;
+}
+
+.mobile-menu-button,
+.mobile-close,
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .admin-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .admin-main {
+    margin-left: 0;
+  }
+
+  .mobile-menu-button {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 8px;
+    background: #f0f3f7;
+    color: #172033;
+    cursor: pointer;
+  }
+
+  .mobile-close {
+    display: grid;
+    place-items: center;
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    color: var(--color-surface);
+    cursor: pointer;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgb(0 0 0 / 45%);
+  }
+
+  .admin-content {
+    padding: 22px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-header {
+    min-height: 72px;
+    padding: 12px 16px;
+  }
+
+  .admin-content {
+    padding: 18px 14px;
+  }
+}
+
+
+.sidebar-profile {
+  text-decoration: none;
+  color: var(--color-surface);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar-profile:hover,
+.sidebar-profile.active {
+  background: #1e2d46;
+}
+
+.sidebar-profile > svg {
+  color: #9ba9bf;
+}
+
+
+.admin-module-page {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+}
+
+.admin-content {
+  width: 100%;
+  min-width: 0;
+  padding: 28px;
+}
+
+@media (max-width: 768px) {
+  .admin-content {
+    padding: 20px 16px;
+  }
+}

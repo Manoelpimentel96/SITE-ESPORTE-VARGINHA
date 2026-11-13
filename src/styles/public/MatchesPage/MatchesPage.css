@@ -1,0 +1,420 @@
+
+/* =========================================================
+   PARTIDAS - ÁREA PÚBLICA
+   ========================================================= */
+
+.public-matches-page {
+  width: 100%;
+  min-width: 0;
+}
+
+.public-matches-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* =========================================================
+   SEÇÕES POR STATUS
+   ========================================================= */
+
+.public-match-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.public-match-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.public-match-section__header h2 {
+  margin: 0;
+  color: var(--text-primary, #1f2937);
+  font-size: 1.15rem;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.public-match-section__header p {
+  margin: 4px 0 0;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.public-match-section__count {
+  flex-shrink: 0;
+  padding: 5px 11px;
+  border-radius: 20px;
+  background: var(--surface-secondary, #f3f4f6);
+  color: var(--text-secondary, #4b5563);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* =========================================================
+   LISTA E CARD DA PARTIDA
+   ========================================================= */
+
+.public-match-section__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.public-match-card {
+  min-width: 0;
+  padding: 18px 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 12px;
+  background: var(--surface-color, #ffffff);
+  box-shadow: 0 2px 7px rgb(0 0 0 / 4%);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.public-match-card:hover {
+  border-color: var(--border-hover, #cbd5e1);
+  box-shadow: 0 5px 15px rgb(0 0 0 / 7%);
+}
+
+/* =========================================================
+   CABEÇALHO: STATUS E COMPETIÇÃO
+   ========================================================= */
+
+.public-match-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  margin-bottom: 18px;
+}
+
+.public-match-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex-shrink: 0;
+  min-height: 26px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.045em;
+}
+
+.public-match-status--live {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.public-match-status--scheduled {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.public-match-status--postponed {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.public-match-status--finished {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.public-match-status__indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: public-match-pulse 1.5s infinite;
+}
+
+@keyframes public-match-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.public-match-competition {
+  overflow: hidden;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.78rem;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TIMES, ESCUDOS E PLACAR
+   ========================================================= */
+
+.public-match-card__teams {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 8px 0 20px;
+}
+
+.public-match-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  text-align: center;
+}
+
+.public-match-team__crest {
+  display: block;
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.public-match-team__crest--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-secondary, #f3f4f6);
+  color: var(--text-secondary, #6b7280);
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.public-match-team__name {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  color: var(--text-primary, #1f2937);
+  font-size: 0.95rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.public-match-team__role {
+  color: var(--text-secondary, #9ca3af);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.public-match-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  color: var(--text-primary, #111827);
+  text-align: center;
+}
+
+.public-match-score > strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 1.8rem;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.public-match-score > strong span {
+  color: var(--text-secondary, #9ca3af);
+  font-size: 1.2rem;
+}
+
+.public-match-score__versus {
+  color: var(--text-secondary, #9ca3af);
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+/* =========================================================
+   DESTAQUE DA PARTIDA AO VIVO
+   ========================================================= */
+
+.public-match-card--live {
+  border-color: #fecaca;
+  background: linear-gradient(
+    110deg,
+    #fffafa 0%,
+    var(--surface-color, #ffffff) 45%
+  );
+}
+
+.public-match-section--live .public-match-section__header {
+  border-bottom-color: #fecaca;
+}
+
+.public-match-section--live .public-match-section__header h2 {
+  color: #b91c1c;
+}
+
+/* =========================================================
+   INFORMAÇÕES: DATA E LOCAL
+   ========================================================= */
+
+.public-match-card__details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.public-match-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.public-match-detail__label {
+  color: var(--text-secondary, #9ca3af);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+.public-match-detail strong {
+  color: var(--text-primary, #374151);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .public-matches-sections {
+    gap: 26px;
+    margin-top: 18px;
+  }
+
+  .public-match-section {
+    gap: 11px;
+  }
+
+  .public-match-section__header {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .public-match-section__header h2 {
+    font-size: 1rem;
+  }
+
+  .public-match-section__header p {
+    font-size: 0.78rem;
+  }
+
+  .public-match-card {
+    padding: 14px 12px;
+    border-radius: 10px;
+  }
+
+  .public-match-card__header {
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .public-match-competition {
+    max-width: 58%;
+    font-size: 0.7rem;
+  }
+
+  .public-match-card__teams {
+    grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1fr);
+    gap: 5px;
+    padding-bottom: 15px;
+  }
+
+  .public-match-team__crest {
+    width: 46px;
+    height: 46px;
+  }
+
+  .public-match-team__name {
+    font-size: 0.82rem;
+  }
+
+  .public-match-team__role {
+    font-size: 0.65rem;
+  }
+
+  .public-match-score > strong {
+    gap: 5px;
+    font-size: 1.35rem;
+  }
+
+  .public-match-score > strong span {
+    font-size: 0.95rem;
+  }
+
+  .public-match-card__details {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .public-match-detail {
+    gap: 3px;
+  }
+}
+
+@media (max-width: 360px) {
+  .public-match-card {
+    padding: 12px 9px;
+  }
+
+  .public-match-card__teams {
+    grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
+    gap: 3px;
+  }
+
+  .public-match-team__crest {
+    width: 38px;
+    height: 38px;
+  }
+
+  .public-match-team__name {
+    font-size: 0.75rem;
+  }
+
+  .public-match-score > strong {
+    font-size: 1.15rem;
+  }
+
+  .public-match-status {
+    padding: 4px 7px;
+    font-size: 0.63rem;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@site-esporte/api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "check": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/cors": "^11.0.1",
+    "@fastify/helmet": "^13.0.1",
+    "@fastify/rate-limit": "^10.3.0",
+    "@supabase/supabase-js": "^2.119.0",
+    "dotenv": "^16.6.1",
+    "fastify": "^5.6.2",
+    "zod": "^4.1.12",
+    "tsx": "^4.20.6",
+    "typescript": "~6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2"
+  }
+}

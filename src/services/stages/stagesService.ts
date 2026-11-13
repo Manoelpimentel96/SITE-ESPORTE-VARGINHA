@@ -1,0 +1,16 @@
+import { domainCall } from '../../lib/domainApi'
+import type { GroupFormData, RoundFormData, StageFormData, Stage, StageGroup, StageRound, StageChampionshipOption, StageSeasonOption } from '../../backend/modules/stages/stages.types'
+export const listStageChampionships = () => domainCall<StageChampionshipOption[]>('stages', 'listStageChampionships')
+export const listStageSeasons = (id: string) => domainCall<StageSeasonOption[]>('stages', 'listStageSeasons', id)
+export const listStages = (id: string) => domainCall<Stage[]>('stages', 'listStages', id)
+export const createStage = (data: StageFormData) => domainCall<Stage>('stages', 'createStage', data)
+export const updateStage = (id: string, data: StageFormData) => domainCall<Stage>('stages', 'updateStage', id, data)
+export const deleteStage = (id: string) => domainCall<void>('stages', 'deleteStage', id)
+export const listStageGroups = (id: string) => domainCall<StageGroup[]>('stages', 'listStageGroups', id)
+export const createStageGroup = (data: GroupFormData) => domainCall<StageGroup>('stages', 'createStageGroup', data)
+export const updateStageGroup = (id: string, data: GroupFormData) => domainCall<StageGroup>('stages', 'updateStageGroup', id, data)
+export const deleteStageGroup = (id: string) => domainCall<void>('stages', 'deleteStageGroup', id)
+export const listStageRounds = (phaseId: string, groupId?: string | null) => domainCall<StageRound[]>('stages', 'listStageRounds', phaseId, groupId)
+export const createStageRound = (data: RoundFormData) => domainCall<StageRound>('stages', 'createStageRound', data)
+export const updateStageRound = (id: string, data: RoundFormData) => domainCall<StageRound>('stages', 'updateStageRound', id, data)
+export const deleteStageRound = (id: string) => domainCall<void>('stages', 'deleteStageRound', id)

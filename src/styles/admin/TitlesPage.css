@@ -1,0 +1,366 @@
+.titles-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+.titles-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.titles-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.titles-field label {
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.titles-field input,
+.titles-field select,
+.titles-field textarea {
+  width: 100%;
+  min-height: 43px;
+  padding: 10px 12px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  outline: none;
+  font: inherit;
+  font-size: 14px;
+}
+
+.titles-field textarea {
+  resize: vertical;
+}
+
+.titles-field input:focus,
+.titles-field select:focus,
+.titles-field textarea:focus {
+  border-color: var(--color-brand-700);
+  box-shadow: 0 0 0 3px rgb(8 123 121 / 10%);
+}
+
+.titles-field input:disabled,
+.titles-field select:disabled,
+.titles-field textarea:disabled {
+  cursor: not-allowed;
+  background: #f3f5f7;
+}
+
+.titles-field small {
+  color: #b45309;
+  font-size: 12px;
+}
+
+.titles-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.titles-toolbar > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.titles-toolbar strong {
+  color: #1d2c40;
+  font-size: 16px;
+}
+
+.titles-toolbar small {
+  color: #748094;
+  font-size: 13px;
+}
+
+.titles-toolbar-actions,
+.titles-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titles-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 9px 15px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.titles-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.titles-button.primary {
+  color: var(--color-surface);
+  background: var(--color-brand-700);
+}
+
+.titles-button.primary:hover:not(:disabled) {
+  background: var(--color-brand-900);
+}
+
+.titles-button.secondary {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.titles-button.secondary:hover:not(:disabled) {
+  background: #f3f6f8;
+}
+
+.titles-panel {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.titles-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 19px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.titles-panel-header h2 {
+  margin: 0;
+  color: #1d2c40;
+  font-size: 16px;
+}
+
+.titles-panel-header p {
+  margin: 5px 0 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.titles-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 20px;
+}
+
+.titles-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.titles-form-actions {
+  justify-content: flex-end;
+  padding: 0 20px 20px;
+}
+
+.titles-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.titles-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.titles-table th,
+.titles-table td {
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.titles-table th {
+  color: var(--color-text-muted);
+  background: var(--color-surface-muted);
+  font-weight: 600;
+}
+
+.titles-table td {
+  color: #435168;
+}
+
+.titles-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.titles-team-cell {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--color-text);
+}
+
+.titles-team-cell svg {
+  flex-shrink: 0;
+  color: #bd8b25;
+}
+
+.titles-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.titles-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: var(--color-text-muted);
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.titles-actions button:hover {
+  color: var(--color-brand-700);
+  background: #edf8f7;
+}
+
+.titles-actions button:last-child:hover {
+  color: #c0392b;
+  background: #fff1f0;
+}
+
+.titles-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 190px;
+  padding: 30px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.titles-empty svg {
+  color: #bd8b25;
+}
+
+.titles-empty strong {
+  color: var(--color-text);
+  font-size: 15px;
+}
+
+.titles-empty span {
+  max-width: 440px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.titles-page-empty {
+  min-height: 260px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.titles-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 15px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.titles-message.error {
+  color: #a93226;
+  background: #fff3f1;
+  border-color: #f5c6c1;
+}
+
+.titles-message.success {
+  color: var(--color-success);
+  background: #effaf3;
+  border-color: #c8ead4;
+}
+
+.titles-message svg {
+  flex-shrink: 0;
+}
+
+.titles-page .is-spinning {
+  animation: titles-spin 1s linear infinite;
+}
+
+@keyframes titles-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .titles-filters,
+  .titles-form {
+    grid-template-columns: 1fr;
+  }
+
+  .titles-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .titles-toolbar-actions {
+    flex-wrap: wrap;
+  }
+
+  .titles-toolbar-actions .titles-button {
+    flex: 1;
+  }
+
+  .titles-field.full-width {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .titles-toolbar-actions {
+    flex-direction: column;
+  }
+
+  .titles-toolbar-actions .titles-button {
+    width: 100%;
+  }
+
+  .titles-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .titles-form-actions .titles-button {
+    width: 100%;
+  }
+}

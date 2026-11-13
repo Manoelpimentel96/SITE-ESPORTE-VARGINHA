@@ -1,0 +1,226 @@
+
+.standings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.standings-filters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  gap: 14px;
+  padding: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.standings-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.standings-filters select {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  color: #263445;
+  background: var(--color-surface);
+  border: 1px solid #d7dee8;
+  border-radius: 7px;
+  outline: none;
+}
+
+.standings-filters select:focus {
+  border-color: var(--color-brand-700);
+  box-shadow: 0 0 0 3px rgb(8 123 121 / 10%);
+}
+
+.standings-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.standings-toolbar > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.standings-toolbar small {
+  margin-left: 5px;
+  color: #7b8797;
+}
+
+.standings-live-indicator {
+  width: 9px;
+  height: 9px;
+  background: #16a36a;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgb(22 163 106 / 12%);
+}
+
+.standings-refresh-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 13px;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.standings-refresh-button:hover:not(:disabled) {
+  background: #f6f8fa;
+}
+
+.standings-refresh-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.is-spinning {
+  animation: standings-spin 1s linear infinite;
+}
+
+@keyframes standings-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.standings-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.standings-table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 13px;
+}
+
+.standings-table th {
+  padding: 15px 12px;
+  color: #687588;
+  background: #f7f9fb;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.standings-table td {
+  padding: 15px 12px;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.standings-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.standings-table tbody tr:hover {
+  background: var(--color-surface-muted);
+}
+
+.standings-table .position-column {
+  width: 65px;
+}
+
+.standings-table .team-column {
+  min-width: 190px;
+  text-align: left;
+}
+
+.standings-table .position-cell {
+  color: var(--color-brand-700);
+  font-weight: 700;
+}
+
+.standings-table .team-cell {
+  text-align: left;
+}
+
+.standings-table .team-cell strong {
+  color: #263445;
+  font-weight: 650;
+}
+
+.standings-table .points-column,
+.standings-table .points-cell {
+  color: var(--color-success);
+  font-weight: 800;
+}
+
+.standings-table .negative {
+  color: #c0392b;
+}
+
+.standings-feedback {
+  padding: 45px 20px;
+  color: #778397;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.standings-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 15px;
+  color: #a93226;
+  background: #fff4f2;
+  border: 1px solid #f3d0ca;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.standings-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  color: #8490a0;
+  font-size: 11px;
+}
+
+@media (max-width: 1100px) {
+  .standings-filters {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .standings-filters {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+
+  .standings-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .standings-toolbar > div {
+    flex-wrap: wrap;
+  }
+}
