@@ -1,4 +1,4 @@
-import type { TitleFormData } from './titles.types'
+import type { TitleFormData } from './titles.types.js'
 
 export function validateTitle(data: TitleFormData): void {
   if (!data.seasonId) {

@@ -3,7 +3,7 @@ import type {
   Season,
   SeasonFormData,
   SeasonListFilters,
-} from './season.types'
+} from './season.types.js'
 
 export interface SeasonRepository {
   list(filters?: SeasonListFilters): Promise<Season[]>

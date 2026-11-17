@@ -6,12 +6,12 @@ import type {
   MatchFilters,
   MatchFormData,
   MatchRepository,
-} from './matches.types'
+} from './matches.types.js'
 
 import {
   normalizeMatchData,
   validateMatch,
-} from './matches.validation'
+} from './matches.validation.js'
 
 function assertValid(data: MatchFormData): MatchFormData {
   const normalized = normalizeMatchData(data)

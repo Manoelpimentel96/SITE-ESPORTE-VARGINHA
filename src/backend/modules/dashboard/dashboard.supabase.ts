@@ -1,4 +1,4 @@
-import { supabase } from '../../../../apps/api/src/lib/supabase'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
 
 import type {
     DashboardActivity,
@@ -9,7 +9,7 @@ import type {
     DashboardRepository,
     DashboardSeason,
     DashboardStats,
-} from './dashboard.types'
+} from './dashboard.types.js'
 
 function throwSupabaseError(error: { message: string } | null): void {
   if (error) {

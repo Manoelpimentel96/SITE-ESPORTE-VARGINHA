@@ -1,7 +1,7 @@
-import { validateDashboardFilters } from './dashboard.validation'
-import { dashboardSupabaseRepository } from './dashboard.supabase'
+import { validateDashboardFilters } from './dashboard.validation.js'
+import { dashboardSupabaseRepository } from './dashboard.supabase.js'
 
-import type { DashboardFilters } from './dashboard.types'
+import type { DashboardFilters } from './dashboard.types.js'
 
 export async function listDashboardChampionships() {
   return dashboardSupabaseRepository.listChampionships()

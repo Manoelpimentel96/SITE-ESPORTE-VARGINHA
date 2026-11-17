@@ -1,4 +1,4 @@
-import type { TeamFormData } from './team.types'
+import type { TeamFormData } from './team.types.js'
 
 export function validateTeam(data: TeamFormData): string[] {
   const errors: string[] = []

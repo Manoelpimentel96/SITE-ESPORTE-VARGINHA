@@ -3,7 +3,7 @@ import type {
   RegulationFormData,
   RegulationListFilters,
   RegulationStatus,
-} from './regulation.types'
+} from './regulation.types.js'
 
 export interface RegulationRepository {
   list(filters?: RegulationListFilters): Promise<Regulation[]>

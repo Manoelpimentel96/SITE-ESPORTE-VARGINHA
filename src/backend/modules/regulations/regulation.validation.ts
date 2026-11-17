@@ -1,7 +1,7 @@
 import type {
   RegulationFormData,
   RegulationValidationErrors,
-} from './regulation.types'
+} from './regulation.types.js'
 
 const formats = [
   'league_home_away',

@@ -4,7 +4,7 @@ import type {
   PublicPlayer,
   PublicSeason,
   PublicTeam,
-} from './public.types'
+} from './public.types.js'
 
 export interface PublicRepository {
   listChampionships(): Promise<PublicChampionship[]>

@@ -1,4 +1,4 @@
-import { supabase } from '../../../../apps/api/src/lib/supabase'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
 
 import type {
   Title,
@@ -8,7 +8,7 @@ import type {
   TitleTeamOption,
   TitleFilters,
   TitlesRepository,
-} from './titles.types'
+} from './titles.types.js'
 
 interface ChampionshipRow {
   id: string

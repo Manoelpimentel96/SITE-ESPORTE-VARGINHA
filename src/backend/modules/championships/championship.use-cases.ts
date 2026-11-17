@@ -2,14 +2,14 @@
 import type {
   Championship,
   ChampionshipFormData,
-} from './championship.types'
+} from './championship.types.js'
 
 import type {
   ChampionshipListFilters,
   ChampionshipRepository,
-} from './championship.repository'
+} from './championship.repository.js'
 
-import { validateChampionship } from './championship.validation'
+import { validateChampionship } from './championship.validation.js'
 
 export class ChampionshipValidationError extends Error {
   public readonly errors: ReturnType<typeof validateChampionship>

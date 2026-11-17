@@ -6,9 +6,9 @@ import type {
   StandingsRepository,
   StandingsRow,
   StandingsRules,
-} from './standings.types'
+} from './standings.types.js'
 
-import { validateStandingsFilters } from './standings.validation'
+import { validateStandingsFilters } from './standings.validation.js'
 
 function createEmptyRow(
   registration: StandingsRegistration,

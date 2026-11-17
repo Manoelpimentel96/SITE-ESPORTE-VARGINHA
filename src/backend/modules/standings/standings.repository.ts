@@ -13,4 +13,4 @@ export {
   type StandingsGroupOption,
   type StandingsMode,
   type StandingsTieBreaker,
-} from './standings.types'
+} from './standings.types.js'

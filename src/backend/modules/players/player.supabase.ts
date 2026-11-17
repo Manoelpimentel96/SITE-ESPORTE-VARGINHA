@@ -1,5 +1,5 @@
-import { supabase } from '../../../../apps/api/src/lib/supabase'
-import type { Player, PlayerRepository, PlayerListFilters, PlayerTeamOption } from './player.types'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
+import type { Player, PlayerRepository, PlayerListFilters, PlayerTeamOption } from './player.types.js'
 
 type PlayerRow = { id: string; full_name: string; birth_date: string | null; position: Player['position']; photo_url: string | null; status: Player['status']; created_at: string }
 type RegistrationRow = { player_id: string; shirt_number: number | null; season_id: string; team_id: string; team_registration_id: string; created_at: string }

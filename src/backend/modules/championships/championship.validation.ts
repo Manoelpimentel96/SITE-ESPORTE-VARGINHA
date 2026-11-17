@@ -3,7 +3,7 @@ import type {
   ChampionshipFormData,
   ChampionshipValidationErrors,
   ChampionshipStatus,
-} from './championship.types'
+} from './championship.types.js'
 
 export function validateChampionship(
   data: ChampionshipFormData,

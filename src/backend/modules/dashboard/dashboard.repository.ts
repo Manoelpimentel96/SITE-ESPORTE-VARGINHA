@@ -2,7 +2,7 @@ import type {
   DashboardData,
   DashboardFilters,
   DashboardRepository,
-} from './dashboard.types'
+} from './dashboard.types.js'
 
 export class DashboardRepositoryError extends Error {
   constructor(message: string) {

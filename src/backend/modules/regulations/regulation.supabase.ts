@@ -1,6 +1,6 @@
-import { supabase } from '../../../../apps/api/src/lib/supabase'
-import { handleDatabaseError } from '../../../lib/errors/AppError'
-import type { RegulationRepository } from './regulation.repository'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
+import { handleDatabaseError } from '../../../lib/errors/AppError.js'
+import type { RegulationRepository } from './regulation.repository.js'
 import type {
   Regulation,
   RegulationFormData,
@@ -8,7 +8,7 @@ import type {
   RegulationStatus,
   ClassificationSettings,
   TieBreaker,
-} from './regulation.types'
+} from './regulation.types.js'
 
 type DatabaseRow = Record<string, unknown>
 

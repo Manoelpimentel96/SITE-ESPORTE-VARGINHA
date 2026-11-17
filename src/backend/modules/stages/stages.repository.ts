@@ -4,7 +4,7 @@ import type {
   RoundFormData,
   StageFormData,
   StagesRepository,
-} from './stages.types'
+} from './stages.types.js'
 
 export interface StagesRepositoryContract extends StagesRepository {
   createStage(data: StageFormData): Promise<Awaited<ReturnType<StagesRepository['createStage']>>>

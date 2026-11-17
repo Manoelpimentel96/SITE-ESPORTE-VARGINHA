@@ -3,7 +3,7 @@ import type {
   Championship,
   ChampionshipFormData,
   ChampionshipStatus,
-} from './championship.types'
+} from './championship.types.js'
 
 export interface ChampionshipListFilters {
   search?: string

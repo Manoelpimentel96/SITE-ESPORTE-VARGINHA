@@ -1,11 +1,11 @@
-import { supabase } from '../../../../apps/api/src/lib/supabase'
-import type { PublicRepository } from './public.repository'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
+import type { PublicRepository } from './public.repository.js'
 import type {
   PublicMatch,
   PublicPlayer,
   PublicSeason,
   PublicTeam
-} from './public.types'
+} from './public.types.js'
 
 type Relation<T> = T | T[] | null
 

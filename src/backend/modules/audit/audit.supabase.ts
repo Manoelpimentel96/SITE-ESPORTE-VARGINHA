@@ -6,7 +6,7 @@ import type {
   AuditFilters,
   AuditLog,
   AuditRepository,
-} from './audit.types'
+} from './audit.types.js'
 
 interface AuditLogRow {
   id: string

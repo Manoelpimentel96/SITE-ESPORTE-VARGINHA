@@ -1,5 +1,5 @@
 
-import { supabase } from '../../../../apps/api/src/lib/supabase'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
 
 import type {
   Team,
@@ -7,7 +7,7 @@ import type {
   TeamListFilters,
   ChampionshipOption,
   SeasonOption,
-} from './team.types'
+} from './team.types.js'
 
 interface TeamRow {
   id: string

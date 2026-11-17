@@ -1,15 +1,15 @@
 
-import { supabase } from '../../../../apps/api/src/lib/supabase'
-import { handleDatabaseError } from '../../../lib/errors/AppError'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
+import { handleDatabaseError } from '../../../lib/errors/AppError.js'
 
 import type {
   Season,
   SeasonFormData,
   SeasonListFilters,
   SeasonStatus,
-} from './season.types'
+} from './season.types.js'
 
-import type { SeasonRepository } from './season.repository'
+import type { SeasonRepository } from './season.repository.js'
 
 interface SeasonRow {
   id: string

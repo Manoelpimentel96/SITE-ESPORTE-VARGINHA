@@ -2,7 +2,7 @@
 import type {
   SeasonFormData,
   SeasonValidationErrors,
-} from './season.types'
+} from './season.types.js'
 
 const validStatuses = [
   'draft',

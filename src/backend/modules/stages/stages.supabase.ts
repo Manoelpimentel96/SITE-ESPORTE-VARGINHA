@@ -1,5 +1,5 @@
 
-import { supabase } from '../../../../apps/api/src/lib/supabase'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
 
 import type {
     GroupFormData,
@@ -12,7 +12,7 @@ import type {
     StageRound,
     StageSeasonOption,
     StagesRepository,
-} from './stages.types'
+} from './stages.types.js'
 
 interface StageRow {
   id: string

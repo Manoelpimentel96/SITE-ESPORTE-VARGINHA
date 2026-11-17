@@ -3,7 +3,7 @@ import type {
   AuditFilters,
   AuditListResult,
   AuditRepository,
-} from './audit.types'
+} from './audit.types.js'
 
 export async function listAuditLogs(
   repository: AuditRepository,

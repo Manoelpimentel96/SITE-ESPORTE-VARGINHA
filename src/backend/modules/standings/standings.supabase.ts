@@ -1,5 +1,5 @@
 
-import { supabase } from '../../../../apps/api/src/lib/supabase'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
 
 import type {
   StandingsChampionshipOption,
@@ -11,7 +11,7 @@ import type {
   StandingsRepository,
   StandingsRules,
   StandingsSeasonOption,
-} from './standings.types'
+} from './standings.types.js'
 
 function throwDatabaseError(error: { message: string } | null) {
   if (error) throw new Error(error.message)

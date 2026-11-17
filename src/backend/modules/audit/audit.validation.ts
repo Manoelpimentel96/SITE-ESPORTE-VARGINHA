@@ -1,5 +1,5 @@
 
-import type { AuditFilters } from './audit.types'
+import type { AuditFilters } from './audit.types.js'
 
 export function validateAuditFilters(
   filters: AuditFilters,

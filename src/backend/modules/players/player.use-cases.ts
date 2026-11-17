@@ -1,13 +1,13 @@
 
-import { playerRepository } from './player.supabase'
-import { validatePlayer } from './player.validation'
+import { playerRepository } from './player.supabase.js'
+import { validatePlayer } from './player.validation.js'
 
 import type {
   Player,
   PlayerFormData,
   PlayerListFilters,
   PlayerResult,
-} from './player.types'
+} from './player.types.js'
 
 function getErrorMessage(error: unknown): string {
   return error instanceof Error

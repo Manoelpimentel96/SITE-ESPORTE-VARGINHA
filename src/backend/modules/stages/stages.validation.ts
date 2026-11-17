@@ -4,7 +4,7 @@ import type {
   RoundFormData,
   StageFormData,
   StagePhaseType,
-} from './stages.types'
+} from './stages.types.js'
 
 const phaseTypes: StagePhaseType[] = [
   'league',

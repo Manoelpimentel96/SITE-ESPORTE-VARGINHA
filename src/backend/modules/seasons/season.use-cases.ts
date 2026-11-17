@@ -3,11 +3,11 @@ import type {
   Season,
   SeasonFormData,
   SeasonListFilters,
-} from './season.types'
+} from './season.types.js'
 
-import type { SeasonRepository } from './season.repository'
+import type { SeasonRepository } from './season.repository.js'
 
-import { validateSeason } from './season.validation'
+import { validateSeason } from './season.validation.js'
 
 export class SeasonValidationError extends Error {
   public readonly errors: ReturnType<typeof validateSeason>

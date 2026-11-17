@@ -1,4 +1,4 @@
-import type { MatchFormData } from './matches.types'
+import type { MatchFormData } from './matches.types.js'
 
 export interface ValidationResult {
   valid: boolean

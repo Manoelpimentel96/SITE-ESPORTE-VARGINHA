@@ -4,13 +4,13 @@ import type {
   RoundFormData,
   StageFormData,
   StagesRepository,
-} from './stages.types'
+} from './stages.types.js'
 
 import {
   validateGroup,
   validateRound,
   validateStage,
-} from './stages.validation'
+} from './stages.validation.js'
 
 export function createStagesUseCases(repository: StagesRepository) {
   return {

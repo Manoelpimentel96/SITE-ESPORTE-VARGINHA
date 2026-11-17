@@ -2,9 +2,9 @@ import type {
   TitleFormData,
   TitlesRepository,
   TitleFilters,
-} from './titles.types'
+} from './titles.types.js'
 
-import { validateTitle } from './titles.validation'
+import { validateTitle } from './titles.validation.js'
 
 export function createTitlesUseCases(repository: TitlesRepository) {
   return {

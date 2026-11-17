@@ -1,10 +1,10 @@
-import type { RegulationRepository } from './regulation.repository'
+import type { RegulationRepository } from './regulation.repository.js'
 import type {
   Regulation,
   RegulationFormData,
   RegulationListFilters
-} from './regulation.types'
-import { assertValidRegulation } from './regulation.validation'
+} from './regulation.types.js'
+import { assertValidRegulation } from './regulation.validation.js'
 
 export class RegulationUseCases {
   private readonly repository: RegulationRepository

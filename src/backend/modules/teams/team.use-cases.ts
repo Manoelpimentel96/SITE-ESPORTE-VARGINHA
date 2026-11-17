@@ -1,13 +1,13 @@
 
-import { teamRepository } from './team.supabase'
-import { validateTeam } from './team.validation'
+import { teamRepository } from './team.supabase.js'
+import { validateTeam } from './team.validation.js'
 
 import type {
   Team,
   TeamFormData,
   TeamListFilters,
   TeamResult,
-} from './team.types'
+} from './team.types.js'
 
 function getErrorMessage(error: unknown): string {
   return error instanceof Error

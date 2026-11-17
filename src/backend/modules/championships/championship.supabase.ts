@@ -1,17 +1,17 @@
 
-import { supabase } from '../../../../apps/api/src/lib/supabase'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
 
-import { handleDatabaseError } from '../../../lib/errors/AppError'
+import { handleDatabaseError } from '../../../lib/errors/AppError.js'
 
 import type {
   Championship,
   ChampionshipFormData,
-} from './championship.types'
+} from './championship.types.js'
 
 import type {
   ChampionshipListFilters,
   ChampionshipRepository,
-} from './championship.repository'
+} from './championship.repository.js'
 
 interface ChampionshipRow {
   id: string

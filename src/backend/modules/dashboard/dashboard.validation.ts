@@ -1,4 +1,4 @@
-import type { DashboardFilters } from './dashboard.types'
+import type { DashboardFilters } from './dashboard.types.js'
 
 export function validateDashboardFilters(
   filters: DashboardFilters,

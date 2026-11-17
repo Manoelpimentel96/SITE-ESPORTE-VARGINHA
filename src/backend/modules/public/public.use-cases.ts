@@ -1,5 +1,5 @@
 
-import type { PublicRepository } from './public.repository'
+import type { PublicRepository } from './public.repository.js'
 
 import type {
   PublicMatch,
@@ -7,12 +7,12 @@ import type {
   PublicStanding,
   PublicStatistics,
   PublicTeam,
-} from './public.types'
+} from './public.types.js'
 
 import {
   normalizeSearch,
   requireId,
-} from './public.validation'
+} from './public.validation.js'
 
 function calculateStandings(
   teams: PublicTeam[],

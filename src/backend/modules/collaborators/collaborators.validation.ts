@@ -2,7 +2,7 @@
 import type {
   CollaboratorFormData,
   CollaboratorRole,
-} from './collaborators.types'
+} from './collaborators.types.js'
 
 const allowedRoles: CollaboratorRole[] = [
   'admin',

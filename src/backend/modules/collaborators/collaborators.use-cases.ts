@@ -4,9 +4,9 @@ import type {
   CollaboratorRole,
   CollaboratorStatus,
   CollaboratorsRepository,
-} from './collaborators.types'
+} from './collaborators.types.js'
 
-import { validateCollaborator } from './collaborators.validation'
+import { validateCollaborator } from './collaborators.validation.js'
 
 export function createCollaboratorsUseCases(
   repository: CollaboratorsRepository,

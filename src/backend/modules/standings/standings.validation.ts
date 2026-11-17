@@ -1,5 +1,5 @@
 
-import type { StandingsFilters } from './standings.types'
+import type { StandingsFilters } from './standings.types.js'
 
 export function validateStandingsFilters(
   filters: StandingsFilters,

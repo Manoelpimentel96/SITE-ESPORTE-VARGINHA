@@ -1,9 +1,9 @@
-import { createSupabaseAdminClient, supabase } from '../../../../apps/api/src/lib/supabase'
+import { createSupabaseAdminClient, supabase } from '../../../../apps/api/src/lib/supabase.js'
 import type {
   Collaborator, CollaboratorFilters, CollaboratorFormData,
   CollaboratorPermission, CollaboratorRole, CollaboratorStatus,
   CollaboratorsRepository,
-} from './collaborators.types'
+} from './collaborators.types.js'
 
 type ProfileRow = {
   id: string; user_id: string; full_name: string; cpf: string | null; email: string | null;

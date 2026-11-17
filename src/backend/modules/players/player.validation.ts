@@ -1,5 +1,5 @@
 
-import type { PlayerFormData } from './player.types'
+import type { PlayerFormData } from './player.types.js'
 
 export function validatePlayer(data: PlayerFormData): string[] {
   const errors: string[] = []

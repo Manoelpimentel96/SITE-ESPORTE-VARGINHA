@@ -1,5 +1,5 @@
 
-import { supabase } from '../../../../apps/api/src/lib/supabase'
+import { supabase } from '../../../../apps/api/src/lib/supabase.js'
 
 import type {
   ChampionshipOption,
@@ -14,7 +14,7 @@ import type {
   PhaseOption,
   RoundOption,
   SeasonOption,
-} from './matches.types'
+} from './matches.types.js'
 
 interface MatchRow {
   id: string
