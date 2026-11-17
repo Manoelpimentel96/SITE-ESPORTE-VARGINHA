@@ -5,7 +5,7 @@ import helmet from '@fastify/helmet'
 import rateLimit from '@fastify/rate-limit'
 import { env } from './lib/env.mjs'
 import { authRoutes } from './routes/auth.routes.mjs'
-import { domainRoutes } from './routes/domain.routes.ts'
+import { domainRoutes } from './routes/domain.routes.js'
 
 const app = Fastify({ logger: true, trustProxy: env.NODE_ENV === 'production', bodyLimit: 8 * 1024 * 1024 })
 await app.register(helmet, { contentSecurityPolicy: false })
