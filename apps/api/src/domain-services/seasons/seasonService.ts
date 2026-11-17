@@ -5,9 +5,9 @@ import { SupabaseSeasonRepository } from '../../../../../src/backend/modules/sea
 
 export {
   SeasonValidationError,
-} from '../../../../../src/backend/modules/seasons/season.use-cases'
+} from '../../../../../src/backend/modules/seasons/season.use-cases.js'
 
-export { validateSeason } from '../../../../../src/backend/modules/seasons/season.validation'
+export { validateSeason } from '../../../../../src/backend/modules/seasons/season.validation.js'
 
 export type {
   Season,

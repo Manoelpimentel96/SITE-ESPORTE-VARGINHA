@@ -13,7 +13,7 @@ import type {
 
 import type {
   ChampionshipListFilters,
-} from '../../../../../src/backend/modules/championships/championship.repository'
+} from '../../../../../src/backend/modules/championships/championship.repository.js'
 
 export {
   validateChampionship,
@@ -21,7 +21,7 @@ export {
 
 export {
   ChampionshipValidationError,
-} from '../../../../../src/backend/modules/championships/championship.use-cases'
+} from '../../../../../src/backend/modules/championships/championship.use-cases.js'
 
 export type {
   Championship,
