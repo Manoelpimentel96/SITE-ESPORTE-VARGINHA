@@ -1,6 +1,7 @@
 
-import { createSeasonUseCases } from '../../../../../src/backend/modules/seasons/season.use-cases'
-import { SupabaseSeasonRepository } from '../../../../../src/backend/modules/seasons/season.supabase'
+import { createSeasonUseCases } from '../../../../../src/backend/modules/seasons/season.use-cases.js'
+
+import { SupabaseSeasonRepository } from '../../../../../src/backend/modules/seasons/season.supabase.js'
 
 export {
   SeasonValidationError,

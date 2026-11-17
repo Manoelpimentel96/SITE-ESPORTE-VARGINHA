@@ -1,11 +1,11 @@
 
 import {
   createChampionshipUseCases,
-} from '../../../../../src/backend/modules/championships/championship.use-cases'
+} from '../../../../../src/backend/modules/championships/championship.use-cases.js'
 
 import {
   SupabaseChampionshipRepository,
-} from '../../../../../src/backend/modules/championships/championship.supabase'
+} from '../../../../../src/backend/modules/championships/championship.supabase.js'
 
 import type {
   ChampionshipFormData,
@@ -17,7 +17,7 @@ import type {
 
 export {
   validateChampionship,
-} from '../../../../../src/backend/modules/championships/championship.validation'
+} from '../../../../../src/backend/modules/championships/championship.validation.js'
 
 export {
   ChampionshipValidationError,

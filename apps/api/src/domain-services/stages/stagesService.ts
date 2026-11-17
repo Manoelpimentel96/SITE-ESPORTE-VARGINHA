@@ -1,6 +1,6 @@
 
-import { stagesSupabaseRepository } from '../../../../../src/backend/modules/stages/stages.supabase'
-import { createStagesUseCases } from '../../../../../src/backend/modules/stages/stages.use-cases'
+import { stagesSupabaseRepository } from '../../../../../src/backend/modules/stages/stages.supabase.js'
+import { createStagesUseCases } from '../../../../../src/backend/modules/stages/stages.use-cases.js'
 
 import type {
   GroupFormData,

@@ -1,6 +1,6 @@
 
-import { matchSupabaseRepository } from '../../../../../src/backend/modules/matches/matches.supabase'
-import { createMatchUseCases } from '../../../../../src/backend/modules/matches/matches.use-cases'
+import { matchSupabaseRepository } from '../../../../../src/backend/modules/matches/matches.supabase.js'
+import { createMatchUseCases } from '../../../../../src/backend/modules/matches/matches.use-cases.js'
 
 import type {
   MatchEventFormData,

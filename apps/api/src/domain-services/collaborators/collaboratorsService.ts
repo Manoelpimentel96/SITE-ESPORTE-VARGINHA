@@ -1,5 +1,6 @@
-import { collaboratorsSupabaseRepository } from '../../../../../src/backend/modules/collaborators/collaborators.supabase'
-import { createCollaboratorsUseCases } from '../../../../../src/backend/modules/collaborators/collaborators.use-cases'
+import { collaboratorsSupabaseRepository } from '../../../../../src/backend/modules/collaborators/collaborators.supabase.js'
+
+import { createCollaboratorsUseCases } from '../../../../../src/backend/modules/collaborators/collaborators.use-cases.js'
 
 import type {
   CollaboratorFilters,

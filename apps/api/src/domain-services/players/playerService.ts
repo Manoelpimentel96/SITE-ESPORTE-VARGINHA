@@ -6,7 +6,7 @@ import {
   listPlayerChampionships,
   listPlayerSeasons,
   listPlayerTeams,
-} from '../../../../../src/backend/modules/players/player.use-cases'
+} from '../../../../../src/backend/modules/players/player.use-cases.js'
 
 import type {
   Player,

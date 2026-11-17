@@ -2,7 +2,7 @@ import {
   getDashboard,
   listDashboardChampionships,
   listDashboardSeasons,
-} from '../../../../../src/backend/modules/dashboard/dashboard.use-cases'
+} from '../../../../../src/backend/modules/dashboard/dashboard.use-cases.js'
 
 import type { DashboardFilters } from '../../../../../src/backend/modules/dashboard/dashboard.types'
 

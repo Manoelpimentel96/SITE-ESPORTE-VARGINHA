@@ -1,5 +1,6 @@
-import { SupabaseRegulationRepository } from '../../../../../src/backend/modules/regulations/regulation.supabase'
-import { RegulationUseCases } from '../../../../../src/backend/modules/regulations/regulation.use-cases'
+import { SupabaseRegulationRepository } from '../../../../../src/backend/modules/regulations/regulation.supabase.js'
+
+import { RegulationUseCases } from '../../../../../src/backend/modules/regulations/regulation.use-cases.js'
 
 const repository = new SupabaseRegulationRepository()
 const useCases = new RegulationUseCases(repository)

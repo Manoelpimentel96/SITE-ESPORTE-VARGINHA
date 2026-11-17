@@ -1,6 +1,6 @@
 
-import { createStandingsUseCases } from '../../../../../src/backend/modules/standings/standings.use-cases'
-import { standingsSupabaseRepository } from '../../../../../src/backend/modules/standings/standings.supabase'
+import { createStandingsUseCases } from '../../../../../src/backend/modules/standings/standings.use-cases.js'
+import { standingsSupabaseRepository } from '../../../../../src/backend/modules/standings/standings.supabase.js'
 
 const standings = createStandingsUseCases(
   standingsSupabaseRepository,

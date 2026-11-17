@@ -1,5 +1,5 @@
-import { publicSupabaseRepository } from '../../../../../src/backend/modules/public/public.supabase'
-import { createPublicUseCases } from '../../../../../src/backend/modules/public/public.use-cases'
+import { publicSupabaseRepository } from '../../../../../src/backend/modules/public/public.supabase.js'
+import { createPublicUseCases } from '../../../../../src/backend/modules/public/public.use-cases.js'
 
 const useCases = createPublicUseCases(publicSupabaseRepository)
 

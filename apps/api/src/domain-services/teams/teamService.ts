@@ -5,7 +5,7 @@ import {
   deleteTeam as backendDeleteTeam,
   listChampionshipOptions as backendListChampionships,
   listSeasonOptions as backendListSeasons,
-} from '../../../../../src/backend/modules/teams/team.use-cases'
+} from '../../../../../src/backend/modules/teams/team.use-cases.js'
 
 import type {
   Team,

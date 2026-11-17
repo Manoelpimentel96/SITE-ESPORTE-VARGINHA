@@ -1,5 +1,5 @@
-import { titlesSupabaseRepository } from '../../../../../src/backend/modules/titles/titles.supabase'
-import { createTitlesUseCases } from '../../../../../src/backend/modules/titles/titles.use-cases'
+import { titlesSupabaseRepository } from '../../../../../src/backend/modules/titles/titles.supabase.js'
+import { createTitlesUseCases } from '../../../../../src/backend/modules/titles/titles.use-cases.js'
 
 import type {
   TitleFilters,
