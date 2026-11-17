@@ -1,5 +1,4 @@
-
-import { getAuditLogs } from '../../../../../src/backend/modules/audit/audit.use-cases'
+import { getAuditLogs } from '../../../../../src/backend/modules/audit/audit.use-cases.js'
 
 import type { AuditFilters } from '../../../../../src/backend/modules/audit/audit.types'
 

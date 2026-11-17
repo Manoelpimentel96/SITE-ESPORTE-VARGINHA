@@ -1,7 +1,6 @@
-
-import { listAuditLogs } from './audit.repository'
-import { auditSupabaseRepository } from './audit.supabase'
-import { validateAuditFilters } from './audit.validation'
+import { listAuditLogs } from './audit.repository.js'
+import { auditSupabaseRepository } from './audit.supabase.js'
+import { validateAuditFilters } from './audit.validation.js'
 
 import type { AuditFilters } from './audit.types'
 
