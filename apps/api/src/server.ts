@@ -1,115 +1,119 @@
 import Fastify from 'fastify'
-import cookie from '@fastify/cookie'
-import cors from '@fastify/cors'
-import helmet from '@fastify/helmet'
-import rateLimit from '@fastify/rate-limit'
-import { env } from './lib/env.mjs'
-import { authRoutes } from './routes/auth.routes.mjs'
-import { domainRoutes } from './routes/domain.routes.js'
-
-console.log('[BOOT 01] Imports carregados e configuração disponível')
 
 const app = Fastify({
   logger: true,
-  trustProxy: env.NODE_ENV === 'production',
   bodyLimit: 8 * 1024 * 1024,
 })
 
-console.log('[BOOT 02] Fastify criado')
+let bootStep = 'inicio'
+let bootError: string | null = null
 
-await app.register(helmet, { contentSecurityPolicy: false })
-console.log('[BOOT 03] Helmet registrado')
-
-const allowedOrigins = new Set(
-  env.ALLOWED_ORIGINS.split(',').map((origin) => origin.trim()).filter(Boolean),
-)
-
-await app.register(cors, {
-  origin: (origin, callback) => callback(null, !origin || allowedOrigins.has(origin)),
-  credentials: true,
-})
-console.log('[BOOT 04] CORS registrado')
-
-await app.register(cookie, {
-  secret: env.COOKIE_SECRET,
-  hook: 'onRequest',
-})
-console.log('[BOOT 05] Cookie registrado')
-
-await app.register(rateLimit, {
-  max: 120,
-  timeWindow: '1 minute',
-})
-console.log('[BOOT 06] Rate Limit registrado')
-
-app.addHook('onRequest', async (request, reply) => {
-  if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(request.method)) {
-    const origin = request.headers.origin
-
-    if (!origin || !allowedOrigins.has(origin)) {
-      return reply.code(403).send({ error: 'Origem não autorizada.' })
-    }
+// DIAGNÓSTICO TEMPORÁRIO: mostra a etapa e o motivo da falha.
+app.get('/health', async (_request, reply) => {
+  if (bootError) {
+    return reply.code(500).send({ status: 'erro', etapa: bootStep, erro: bootError })
   }
+  return { status: 'ok', service: 'site-esporte-api' }
 })
 
-app.get('/health', async () => ({
-  status: 'ok',
-  service: 'site-esporte-api',
-}))
-console.log('[BOOT 07] Rota health registrada')
+try {
+  bootStep = 'carregar configuracao (lib/env.mjs)'
+  const { env } = await import('./lib/env.mjs')
 
-await app.register(authRoutes, { prefix: '/api' })
-console.log('[BOOT 08] Rotas de autenticação registradas')
+  bootStep = 'carregar plugins do Fastify'
+  const { default: helmet } = await import('@fastify/helmet')
+  const { default: cors } = await import('@fastify/cors')
+  const { default: cookie } = await import('@fastify/cookie')
+  const { default: rateLimit } = await import('@fastify/rate-limit')
 
-await app.register(domainRoutes, { prefix: '/api' })
-console.log('[BOOT 09] Rotas de domínio registradas')
+  bootStep = 'registrar helmet'
+  await app.register(helmet, { contentSecurityPolicy: false })
 
-app.setNotFoundHandler((request, reply) =>
-  reply.code(404).send({ error: 'Rota não encontrada.' }),
-)
+  const allowedOrigins = new Set(
+    env.ALLOWED_ORIGINS.split(',').map((origin) => origin.trim()).filter(Boolean),
+  )
 
-app.setErrorHandler((error: unknown, request, reply) => {
-  request.log.error({ error }, 'Unhandled API error')
-
-  const candidate =
-    typeof error === 'object' && error !== null
-      ? (error as { statusCode?: unknown; message?: unknown })
-      : {}
-
-  const statusCode =
-    typeof candidate.statusCode === 'number' && candidate.statusCode >= 400
-      ? candidate.statusCode
-      : 500
-
-  const message =
-    typeof candidate.message === 'string'
-      ? candidate.message
-      : 'Erro interno do servidor.'
-
-  return reply.code(statusCode).send({
-    error: statusCode >= 500 ? 'Erro interno do servidor.' : message,
+  bootStep = 'registrar cors'
+  await app.register(cors, {
+    origin: (origin, callback) => callback(null, !origin || allowedOrigins.has(origin)),
+    credentials: true,
   })
-})
 
-console.log('[BOOT 10] Configuração do Fastify concluída')
+  bootStep = 'registrar cookie'
+  await app.register(cookie, {
+    secret: env.COOKIE_SECRET,
+    hook: 'onRequest',
+  })
 
-// Na Vercel a função precisa exportar o app; a plataforma controla a porta.
-export default app
+  bootStep = 'registrar rate limit'
+  await app.register(rateLimit, {
+    max: 120,
+    timeWindow: '1 minute',
+  })
 
-// O listen() só roda fora da Vercel (desenvolvimento local e outros provedores).
-if (!process.env.VERCEL) {
-  try {
-    console.log('[BOOT 11] Iniciando app.listen')
+  app.addHook('onRequest', async (request, reply) => {
+    if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(request.method)) {
+      const origin = request.headers.origin
 
-    await app.listen({
-      host: env.API_HOST,
-      port: env.API_PORT,
+      if (!origin || !allowedOrigins.has(origin)) {
+        return reply.code(403).send({ error: 'Origem não autorizada.' })
+      }
+    }
+  })
+
+  bootStep = 'carregar rotas de autenticacao (routes/auth.routes.mjs)'
+  const { authRoutes } = await import('./routes/auth.routes.mjs')
+
+  bootStep = 'carregar rotas de dominio (routes/domain.routes.js)'
+  const { domainRoutes } = await import('./routes/domain.routes.js')
+
+  bootStep = 'registrar rotas de autenticacao'
+  await app.register(authRoutes, { prefix: '/api' })
+
+  bootStep = 'registrar rotas de dominio'
+  await app.register(domainRoutes, { prefix: '/api' })
+
+  app.setNotFoundHandler((request, reply) =>
+    reply.code(404).send({ error: 'Rota não encontrada.' }),
+  )
+
+  app.setErrorHandler((error: unknown, request, reply) => {
+    request.log.error({ error }, 'Unhandled API error')
+
+    const candidate =
+      typeof error === 'object' && error !== null
+        ? (error as { statusCode?: unknown; message?: unknown })
+        : {}
+
+    const statusCode =
+      typeof candidate.statusCode === 'number' && candidate.statusCode >= 400
+        ? candidate.statusCode
+        : 500
+
+    const message =
+      typeof candidate.message === 'string'
+        ? candidate.message
+        : 'Erro interno do servidor.'
+
+    return reply.code(statusCode).send({
+      error: statusCode >= 500 ? 'Erro interno do servidor.' : message,
     })
+  })
 
-    console.log('[BOOT 12] Servidor iniciado com sucesso')
-  } catch (error) {
-    console.error('[BOOT ERROR] Falha ao iniciar o servidor:', error)
-    app.log.error(error)
+  // Na Vercel o app é exportado; o listen() só roda fora dela (ambiente local).
+  if (!process.env.VERCEL) {
+    bootStep = 'iniciar servidor (listen)'
+    await app.listen({ host: env.API_HOST, port: env.API_PORT })
+  }
+
+  bootStep = 'concluido'
+} catch (error) {
+  bootError = error instanceof Error ? `${error.name}: ${error.message}` : String(error)
+  console.error(`[BOOT ERROR] etapa "${bootStep}":`, error)
+
+  if (!process.env.VERCEL) {
     process.exit(1)
   }
 }
+
+export default app
