@@ -1,4 +1,3 @@
-
 import Fastify from 'fastify'
 import cookie from '@fastify/cookie'
 import cors from '@fastify/cors'
@@ -94,17 +93,23 @@ app.setErrorHandler((error: unknown, request, reply) => {
 
 console.log('[BOOT 10] Configuração do Fastify concluída')
 
-try {
-  console.log('[BOOT 11] Iniciando app.listen')
+// Na Vercel a função precisa exportar o app; a plataforma controla a porta.
+export default app
 
-  await app.listen({
-    host: env.API_HOST,
-    port: env.API_PORT,
-  })
+// O listen() só roda fora da Vercel (desenvolvimento local e outros provedores).
+if (!process.env.VERCEL) {
+  try {
+    console.log('[BOOT 11] Iniciando app.listen')
 
-  console.log('[BOOT 12] Servidor iniciado com sucesso')
-} catch (error) {
-  console.error('[BOOT ERROR] Falha ao iniciar o servidor:', error)
-  app.log.error(error)
-  process.exit(1)
+    await app.listen({
+      host: env.API_HOST,
+      port: env.API_PORT,
+    })
+
+    console.log('[BOOT 12] Servidor iniciado com sucesso')
+  } catch (error) {
+    console.error('[BOOT ERROR] Falha ao iniciar o servidor:', error)
+    app.log.error(error)
+    process.exit(1)
+  }
 }
