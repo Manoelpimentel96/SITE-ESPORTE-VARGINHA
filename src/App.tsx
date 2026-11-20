@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import AdminRoutes from './frontend/routes/AdminRoutes'
 import AppRoutes from './frontend/routes/AppRoutes'
 import PublicRoutes from './frontend/routes/PublicRoutes'
@@ -17,7 +17,12 @@ function App() {
     }
   }, [mode])
   return <BrowserRouter>
-    {mode === 'public' ? <PublicRoutes /> : mode === 'admin' ? <AdminRoutes /> : <AppRoutes />}
+    {mode === 'public' ? (
+      <Routes>
+        <Route path="/portal/*" element={<PublicRoutes />} />
+        <Route path="*" element={<Navigate to="/portal" replace />} />
+      </Routes>
+    ) : mode === 'admin' ? <AdminRoutes /> : <AppRoutes />}
   </BrowserRouter>
 }
 
