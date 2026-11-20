@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import AppRoutes from './frontend/routes/AppRoutes'
 import AdminRoutes from './frontend/routes/AdminRoutes'
+import AppRoutes from './frontend/routes/AppRoutes'
 import PublicRoutes from './frontend/routes/PublicRoutes'
 
 function App() {

@@ -45,7 +45,7 @@ npm run api:dev
 npm run dev
 ```
 
-O Vite encaminha `/api` para `http://localhost:3333`. A aplicação combinada de desenvolvimento contém as rotas públicas e administrativas; os builds de produção são separados.
+O Vite encaminha `/api` para `http://localhost:3000`. A aplicação combinada de desenvolvimento contém as rotas públicas e administrativas; os builds de produção são separados.
 
 ## Banco Supabase
 

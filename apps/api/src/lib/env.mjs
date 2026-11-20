@@ -4,7 +4,7 @@ import { z } from 'zod'
 const schema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   API_HOST: z.string().default('0.0.0.0'),
-  API_PORT: z.coerce.number().int().min(1).max(65535).default(3333),
+  API_PORT: z.coerce.number().int().min(1).max(65535).default(3000),
   WEB_ORIGIN: z.string().url(),
   ALLOWED_ORIGINS: z.string().default('http://localhost:5173'),
   SUPABASE_URL: z.string().url(),
