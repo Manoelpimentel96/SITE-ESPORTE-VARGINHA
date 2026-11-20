@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
     "target": "ES2023",
-    "lib": ["ES2023", "DOM"],
+    "lib": [
+      "ES2023",
+      "DOM"
+    ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "allowJs": true,
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
@@ -14,5 +19,9 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
-  "include": ["src/**/*.ts", "../../src/backend/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "api/**/*.ts",
+    "../../src/backend/**/*.ts"
+  ]
 }
