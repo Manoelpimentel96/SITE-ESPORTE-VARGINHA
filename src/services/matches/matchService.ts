@@ -1,28 +1,40 @@
-
 import { domainCall } from '../../lib/domainApi'
 
 import type {
+  ChampionshipOption,
+  GroupOption,
   Match,
-  MatchFilters,
-  MatchFormData,
   MatchEvent,
   MatchEventFormData,
-  ChampionshipOption,
-  SeasonOption,
-  PhaseOption,
-  GroupOption,
-  RoundOption,
+  MatchFilters,
+  MatchFormData,
   MatchTeamOption,
+  PhaseOption,
+  RoundOption,
+  SeasonOption,
 } from '../../backend/modules/matches/matches.types'
 
 export const listMatches = (filters: MatchFilters) =>
   domainCall<Match[]>('matches', 'listMatches', filters)
 
+/**
+ * O campo datetime-local entrega "2026-11-20T16:30", sem fuso horário.
+ * Convertemos aqui, no navegador (fuso do usuário), para um instante absoluto (ISO/UTC);
+ * se o servidor interpretasse o texto, usaria o fuso dele (UTC) e deslocaria a hora.
+ */
+function withAbsoluteSchedule(data: MatchFormData): MatchFormData {
+  const date = new Date(data.scheduledAt)
+
+  if (!data.scheduledAt || Number.isNaN(date.getTime())) return data
+
+  return { ...data, scheduledAt: date.toISOString() }
+}
+
 export const createMatch = (data: MatchFormData) =>
-  domainCall<Match>('matches', 'createMatch', data)
+  domainCall<Match>('matches', 'createMatch', withAbsoluteSchedule(data))
 
 export const updateMatch = (id: string, data: MatchFormData) =>
-  domainCall<Match>('matches', 'updateMatch', id, data)
+  domainCall<Match>('matches', 'updateMatch', id, withAbsoluteSchedule(data))
 
 export const deleteMatch = (id: string) =>
   domainCall<void>('matches', 'deleteMatch', id)
@@ -118,3 +130,4 @@ export const listMatchTeams = (id: string) =>
     'listMatchTeams',
     id,
   )
+  
