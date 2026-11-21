@@ -1,4 +1,3 @@
-
 import {
   Activity,
   CalendarDays,
@@ -205,6 +204,14 @@ export default function MatchesPage() {
 
   // Evita que uma resposta antiga sobrescreva uma consulta mais recente.
   const matchesRequestId = useRef(0)
+
+  // Referência ao cartão do formulário, usada para rolar a tela até ele.
+  const formSectionRef = useRef<HTMLElement | null>(null)
+
+  // Cada clique em "Editar" incrementa este contador. Usar um contador (e não
+  // apenas "formOpen") garante a rolagem também quando o formulário já está aberto
+  // ou quando o mesmo botão é clicado novamente.
+  const [scrollToFormRequest, setScrollToFormRequest] = useState(0)
 
   /**
    * Carrega a listagem de partidas.
@@ -442,6 +449,31 @@ export default function MatchesPage() {
 }, [loadMatches])
 
   /**
+   * Rola a tela até o formulário de edição.
+   *
+   * Roda depois que o React desenha o formulário (o contador muda no mesmo
+   * ciclo em que formOpen vira true). requestAnimationFrame garante que o layout
+   * já foi calculado antes de rolar. Respeita a preferência do sistema por menos
+   * animação.
+   */
+  useEffect(() => {
+    if (scrollToFormRequest === 0) return
+
+    const frame = window.requestAnimationFrame(() => {
+      const reduceMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches
+
+      formSectionRef.current?.scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth',
+        block: 'start',
+      })
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [scrollToFormRequest])
+
+  /**
    * Lista já ordenada para apresentação.
    */
   const orderedMatches = sortMatches(matches)
@@ -490,6 +522,9 @@ export default function MatchesPage() {
     setSuccess('')
     setSelectedMatch(null)
     setFormOpen(true)
+
+    // Pede a rolagem até o formulário (tratada no useEffect acima).
+    setScrollToFormRequest((current) => current + 1)
 
     const season = seasons.find(
       (item) => item.id === match.seasonId,
@@ -784,6 +819,7 @@ export default function MatchesPage() {
 
       {formOpen && (
         <MatchForm
+          sectionRef={formSectionRef}
           championships={championships}
           seasons={seasons}
           phases={phases}

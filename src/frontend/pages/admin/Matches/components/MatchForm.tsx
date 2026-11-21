@@ -1,5 +1,4 @@
-
-import type { FormEvent } from 'react'
+import type { FormEvent, Ref } from 'react'
 import { X } from 'lucide-react'
 
 import type {
@@ -13,6 +12,9 @@ import type {
 } from '../../../../../backend/modules/matches/matches.types'
 
 interface MatchFormProps {
+  // Referência do cartão do formulário, usada pela página para rolar até ele.
+  sectionRef?: Ref<HTMLElement>
+
   championships: ChampionshipOption[]
   seasons: SeasonOption[]
   phases: PhaseOption[]
@@ -37,6 +39,7 @@ interface MatchFormProps {
 }
 
 export default function MatchForm({
+  sectionRef,
   championships,
   seasons,
   phases,
@@ -57,7 +60,12 @@ export default function MatchForm({
   onFieldChange,
 }: MatchFormProps) {
   return (
-    <section className="matches-form-card">
+    <section
+      ref={sectionRef}
+      className="matches-form-card"
+      // Deixa um respiro no topo ao rolar, para o título não encostar na borda.
+      style={{ scrollMarginTop: '1.5rem' }}
+    >
       <div className="matches-form-card__header">
         <div>
           <h2>{editingId ? 'Editar partida' : 'Cadastrar partida'}</h2>
