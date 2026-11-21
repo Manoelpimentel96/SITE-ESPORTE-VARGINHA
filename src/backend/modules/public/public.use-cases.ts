@@ -264,9 +264,18 @@ export function createPublicUseCases(
         scorerMap.set(event.playerId, current)
       }
 
-      return {
-        goals: scorerEvents.length,
+      // Total de gols da temporada: soma dos placares das partidas, o mesmo placar
+      // exibido no painel e usado na classificação. Ele já considera gols, gols de
+      // pênalti e gols contra, e não depende de o gol ter um jogador informado
+      // (a artilharia abaixo, sim, depende do jogador).
+      const totalGoals = matches.reduce(
+        (total, match) =>
+          total + (match.homeScore ?? 0) + (match.awayScore ?? 0),
+        0,
+      )
 
+      return {
+        goals: totalGoals,
         matchesPlayed: matches.filter(
           (match) => match.status === 'finished',
         ).length,
