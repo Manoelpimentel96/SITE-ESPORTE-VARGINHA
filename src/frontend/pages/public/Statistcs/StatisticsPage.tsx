@@ -92,20 +92,6 @@ export default function StatisticsPage() {
 
   return (
     <section className="statistics-page">
-      <header className="statistics-header">
-        <div>
-          <span className="statistics-eyebrow">
-            CAMPEONATO DE VARGINHA
-          </span>
-
-          <h1>Estatísticas</h1>
-
-          <p>
-            Acompanhe os números e os destaques da temporada.
-          </p>
-        </div>
-      </header>
-
       <StatisticsNavigation
         activeTab={activeTab}
         onChange={setActiveTab}
