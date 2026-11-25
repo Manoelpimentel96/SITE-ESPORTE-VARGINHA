@@ -1,0 +1,110 @@
+/* ============================================================
+   Visão geral das estatísticas
+   Cartões de indicadores gerais.
+   ============================================================ */
+
+.statistics-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ---------- Cartões de indicadores ---------- */
+
+.statistics-overview__cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+
+  width: 100%;
+}
+
+/* ---------- Cartão individual ---------- */
+
+.statistics-overview__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+
+  min-width: 0;
+  min-height: 125px;
+  padding: 19px;
+
+  border: 1px solid var(--public-border);
+  border-radius: 12px;
+
+  background: #fff;
+
+  box-shadow: 0 3px 12px rgb(16 28 50 / 4%);
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+/* ---------- Hover ---------- */
+
+.statistics-overview__card:hover {
+  border-color: rgb(23 107 69 / 35%);
+
+  box-shadow: 0 7px 20px rgb(16 28 50 / 8%);
+
+  transform: translateY(-2px);
+}
+
+/* ---------- Identificação do indicador ---------- */
+
+.statistics-overview__card > span {
+  color: var(--public-muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* ---------- Número principal ---------- */
+
+.statistics-overview__card > strong {
+  color: var(--public-navy);
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 800;
+  line-height: 1;
+
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Celular e tablet ---------- */
+
+@media (max-width: 900px) {
+  .statistics-overview__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .statistics-overview {
+    gap: 24px;
+  }
+
+  .statistics-overview__cards {
+    gap: 10px;
+  }
+
+  .statistics-overview__card {
+    min-height: 105px;
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .statistics-overview__card > span {
+    font-size: 11px;
+  }
+
+  .statistics-overview__card > strong {
+    font-size: 27px;
+  }
+}

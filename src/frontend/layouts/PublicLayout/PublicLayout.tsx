@@ -239,8 +239,12 @@ export default function PublicLayout() {
           ESPORTE VARGINHA
         </strong>
 
-        <span>
-          Feito para valorizar o esporte e a comunidade.
+        <span className="public-footer-credit">
+          Desenvolvido por{' '}
+        <span className="public-footer-author">
+          Manoel Pimentel
+        </span>
+         .
         </span>
       </footer>
     </div>

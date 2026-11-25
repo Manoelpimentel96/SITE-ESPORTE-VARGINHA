@@ -7,7 +7,7 @@ import OverviewPage from '../pages/public/Overview/OverviewPage'
 import PlayersPage from '../pages/public/Players/PlayersPage'
 import PreviousEditionsPage from '../pages/public/PreviousEditions/PreviousEditionsPage'
 import StandingsPage from '../pages/public/Standings/StandingsPage'
-import StatisticsPage from '../pages/public/Statistics/StatisticsPage'
+import StatisticsPage from '../pages/public/Statistcs/StatisticsPage'
 import TeamDetailsPage from '../pages/public/TeamDetails/TeamDetailsPage'
 import TeamsPage from '../pages/public/Teams/TeamsPage'
 

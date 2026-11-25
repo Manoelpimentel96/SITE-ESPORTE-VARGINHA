@@ -1,0 +1,209 @@
+/* ============================================================
+   Página pública de estatísticas
+   Cabeçalho, conteúdo, títulos e estados da página.
+   Usa as variáveis --public-* do PublicLayout.css.
+   ============================================================ */
+
+/* ---------- Estrutura principal ---------- */
+
+.statistics-page {
+  width: 100%;
+  min-width: 0;
+  color: var(--public-navy);
+}
+
+.statistics-page,
+.statistics-page * {
+  box-sizing: border-box;
+}
+
+.statistics-content {
+  width: 100%;
+  min-width: 0;
+  padding-top: 22px;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.statistics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 24px 26px;
+
+  border: 1px solid var(--public-border);
+  border-radius: 14px;
+
+  background: #fff;
+
+  box-shadow: 0 3px 12px rgb(16 28 50 / 4%);
+}
+
+.statistics-header > div {
+  min-width: 0;
+}
+
+.statistics-eyebrow {
+  display: inline-block;
+  margin-bottom: 9px;
+
+  color: var(--public-green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.statistics-header h1 {
+  margin: 0;
+
+  color: var(--public-navy);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.statistics-header p {
+  margin: 9px 0 0;
+
+  color: var(--public-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ---------- Títulos compartilhados ---------- */
+
+.statistics-section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  margin-bottom: 18px;
+}
+
+.statistics-section-heading h2 {
+  margin: 0;
+
+  color: var(--public-navy);
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.statistics-section-heading p {
+  margin: 0;
+
+  color: var(--public-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ---------- Estados de carregamento e erro ---------- */
+
+.statistics-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  min-height: 240px;
+  padding: 28px;
+
+  border: 1px solid var(--public-border);
+  border-radius: 12px;
+
+  background: #fff;
+  text-align: center;
+}
+
+.statistics-state p {
+  margin: 0;
+
+  color: var(--public-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.statistics-state h2 {
+  margin: 0;
+
+  color: var(--public-navy);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.statistics-state--error {
+  border-color: rgb(214 52 44 / 25%);
+  background: #fffafa;
+}
+
+.statistics-state--error h2 {
+  color: #b42318;
+}
+
+.statistics-state--error p {
+  color: #8c3732;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Indicador de carregamento ---------- */
+
+.statistics-loading-spinner {
+  width: 32px;
+  height: 32px;
+
+  border: 3px solid var(--public-border);
+  border-top-color: var(--public-green);
+  border-radius: 50%;
+
+  animation: statistics-spin 0.75s linear infinite;
+}
+
+@keyframes statistics-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 680px) {
+  .statistics-header {
+    padding: 20px;
+  }
+
+  .statistics-header p {
+    font-size: 13px;
+  }
+
+  .statistics-content {
+    padding-top: 18px;
+  }
+
+  .statistics-section-heading h2 {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .statistics-header {
+    padding: 17px;
+    border-radius: 10px;
+  }
+
+  .statistics-header h1 {
+    font-size: 24px;
+  }
+
+  .statistics-eyebrow {
+    font-size: 10px;
+  }
+
+  .statistics-state {
+    min-height: 190px;
+    padding: 20px;
+  }
+}

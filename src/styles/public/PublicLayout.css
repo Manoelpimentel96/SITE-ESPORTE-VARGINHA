@@ -984,3 +984,14 @@
     display: none;
   }
 }
+
+/* Crédito de desenvolvimento */
+
+.public-footer-credit {
+  color: var(--public-muted);
+}
+
+.public-footer-author {
+  color: var(--public-navy);
+  font-weight: 700;
+}

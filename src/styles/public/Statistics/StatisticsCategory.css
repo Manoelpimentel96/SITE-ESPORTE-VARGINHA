@@ -1,0 +1,74 @@
+/* ============================================================
+   Categorias de estatísticas
+   Assistências, cartões amarelos e cartões vermelhos.
+   ============================================================ */
+
+.statistics-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  width: 100%;
+  min-width: 0;
+  padding: 22px;
+
+  border: 1px solid var(--public-border);
+  border-radius: 12px;
+
+  background: #fff;
+
+  box-shadow: 0 3px 12px rgb(16 28 50 / 4%);
+}
+
+/* ---------- Cabeçalho da categoria ---------- */
+
+.statistics-category .statistics-section-heading {
+  padding-bottom: 17px;
+  margin-bottom: 0;
+
+  border-bottom: 1px solid var(--public-border);
+}
+
+/* ---------- Título ---------- */
+
+.statistics-category .statistics-section-heading h2 {
+  color: var(--public-navy);
+  font-size: 19px;
+}
+
+/* ---------- Descrição ---------- */
+
+.statistics-category .statistics-section-heading p {
+  color: var(--public-muted);
+  font-size: 13px;
+}
+
+/* ---------- Hover do painel ---------- */
+
+.statistics-category {
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.statistics-category:hover {
+  border-color: rgb(16 28 50 / 14%);
+  box-shadow: 0 6px 20px rgb(16 28 50 / 6%);
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 680px) {
+  .statistics-category {
+    padding: 17px;
+    border-radius: 10px;
+  }
+
+  .statistics-category .statistics-section-heading {
+    padding-bottom: 14px;
+  }
+
+  .statistics-category .statistics-section-heading h2 {
+    font-size: 17px;
+  }
+}

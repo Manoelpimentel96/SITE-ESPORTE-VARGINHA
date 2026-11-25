@@ -1,0 +1,171 @@
+/* ============================================================
+   Lista de rankings
+   Posição, jogador, equipe e quantidade registrada.
+   ============================================================ */
+
+.statistics-rank-list {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ---------- Item do ranking ---------- */
+
+.statistics-rank-list__item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+
+  min-width: 0;
+  padding: 14px 8px;
+
+  border-bottom: 1px solid var(--public-border);
+  border-radius: 6px;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.statistics-rank-list__item:last-child {
+  border-bottom: 0;
+}
+
+/* ---------- Hover ---------- */
+
+.statistics-rank-list__item:hover {
+  background: rgb(23 107 69 / 4%);
+}
+
+/* ---------- Posição ---------- */
+
+.statistics-rank-list__position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 29px;
+  height: 29px;
+
+  border-radius: 7px;
+
+  background: var(--public-green-light);
+  color: var(--public-green);
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* ---------- Dados do jogador ---------- */
+
+.statistics-rank-list__player {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  min-width: 0;
+}
+
+/* Nome */
+
+.statistics-rank-list__player strong {
+  overflow: hidden;
+
+  color: var(--public-navy);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Equipe */
+
+.statistics-rank-list__player span {
+  overflow: hidden;
+
+  color: var(--public-muted);
+  font-size: 11px;
+  line-height: 1.4;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Valor do ranking ---------- */
+
+.statistics-rank-list__value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+
+  min-width: 55px;
+  text-align: right;
+}
+
+/* Número */
+
+.statistics-rank-list__value strong {
+  color: var(--public-green);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Unidade: gols, assistências, registros etc. */
+
+.statistics-rank-list__value span {
+  color: var(--public-muted);
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Estado vazio ---------- */
+
+.statistics-rank-list__empty {
+  padding: 24px 16px;
+
+  border: 1px dashed var(--public-border);
+  border-radius: 9px;
+
+  background: #fafbfd;
+
+  color: var(--public-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 560px) {
+  .statistics-rank-list__item {
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 12px 4px;
+  }
+
+  .statistics-rank-list__position {
+    width: 25px;
+    height: 25px;
+    font-size: 11px;
+  }
+
+  .statistics-rank-list__player strong {
+    font-size: 12px;
+  }
+
+  .statistics-rank-list__value {
+    min-width: 45px;
+  }
+
+  .statistics-rank-list__value strong {
+    font-size: 16px;
+  }
+}

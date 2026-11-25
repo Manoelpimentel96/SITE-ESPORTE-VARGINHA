@@ -1,0 +1,120 @@
+/* ============================================================
+   Navegação das estatísticas
+   Abas horizontais, seleção, hover e acessibilidade.
+   ============================================================ */
+
+.statistics-navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 4px;
+
+  margin: 18px 0 0;
+
+  border-bottom: 1px solid var(--public-border);
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.statistics-navigation::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Botões das abas ---------- */
+
+.statistics-navigation__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+
+  padding: 13px 16px;
+
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 7px 7px 0 0;
+
+  background: transparent;
+
+  color: #586575;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.statistics-navigation__item svg {
+  flex: 0 0 auto;
+  color: currentColor;
+  transition: transform 0.15s ease;
+}
+
+/* ---------- Hover ---------- */
+
+.statistics-navigation__item:hover {
+  color: var(--public-navy);
+  background: rgb(16 28 50 / 4%);
+}
+
+.statistics-navigation__item:hover svg {
+  transform: translateY(-1px);
+}
+
+/* ---------- Foco pelo teclado ---------- */
+
+.statistics-navigation__item:focus-visible {
+  outline: 2px solid var(--public-green);
+  outline-offset: -2px;
+}
+
+/* ---------- Aba ativa ---------- */
+
+.statistics-navigation__item--active {
+  color: var(--public-green);
+  border-bottom-color: var(--public-green);
+
+  background: linear-gradient(
+    transparent,
+    var(--public-green-light)
+  );
+
+  font-weight: 800;
+}
+
+.statistics-navigation__item--active:hover {
+  color: var(--public-green);
+  background: linear-gradient(
+    transparent,
+    var(--public-green-light)
+  );
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 680px) {
+  .statistics-navigation__item {
+    gap: 7px;
+    padding: 12px 13px;
+    font-size: 12px;
+  }
+
+  .statistics-navigation__item svg {
+    width: 16px;
+    height: 16px;
+  }
+}

@@ -5,10 +5,10 @@ import type { PublicPlayer } from '../../../../backend/modules/public/public.typ
 import { publicService } from '../../../../services/public/publicService'
 
 import {
-  PageHeading,
-  PublicEmpty,
-  PublicError,
-  PublicLoading,
+    PageHeading,
+    PublicEmpty,
+    PublicError,
+    PublicLoading,
 } from '../shared/PublicStates'
 import { usePublicContext } from '../shared/usePublicContext'
 
