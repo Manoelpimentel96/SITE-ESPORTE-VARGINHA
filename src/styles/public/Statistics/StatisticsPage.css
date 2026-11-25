@@ -25,7 +25,7 @@
 
 /* ---------- Cabeçalho ---------- */
 
-.statistics-header {
+/*.statistics-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,7 +44,7 @@
 .statistics-header > div {
   min-width: 0;
 }
-
+*/
 .statistics-eyebrow {
   display: inline-block;
   margin-bottom: 9px;
