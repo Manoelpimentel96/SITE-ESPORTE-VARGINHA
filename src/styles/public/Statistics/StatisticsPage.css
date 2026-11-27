@@ -1,6 +1,6 @@
 /* ============================================================
    Página pública de estatísticas
-   Cabeçalho, conteúdo, títulos e estados da página.
+   Estrutura, temas de cor, painéis, títulos e estados da página.
    Usa as variáveis --public-* do PublicLayout.css.
    ============================================================ */
 
@@ -10,6 +10,15 @@
   width: 100%;
   min-width: 0;
   color: var(--public-navy);
+
+  /* Medalhas do ranking */
+  --stats-gold: #c9962b;
+  --stats-gold-ink: #7a5a0c;
+  --stats-gold-bg: #fff4d1;
+  --stats-silver: #8793a0;
+  --stats-silver-bg: #eef1f4;
+  --stats-bronze: #b4713a;
+  --stats-bronze-bg: #f8eadc;
 }
 
 .statistics-page,
@@ -20,18 +29,56 @@
 .statistics-content {
   width: 100%;
   min-width: 0;
-  padding-top: 22px;
+  padding-top: 16px;
 }
 
-/* ---------- Cabeçalho ---------- */
+/* ---------- Temas de cor ----------
+   Cada categoria define quatro variáveis, usadas por todos os componentes:
+   --tone     cor de destaque (barras, faixas, fundos fortes)
+   --tone-ink cor do texto e dos ícones sobre fundo claro
+   --tone-bg  fundo suave
+   --tone-on  cor do texto sobre o fundo forte */
 
-/*.statistics-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+.statistics-tone--neutral,
+.statistics-tone--goal {
+  --tone: var(--public-green);
+  --tone-ink: var(--public-green);
+  --tone-bg: var(--public-green-light);
+  --tone-on: #fff;
+}
 
-  padding: 24px 26px;
+.statistics-tone--assist {
+  --tone: #2f6fdb;
+  --tone-ink: #1f5fbf;
+  --tone-bg: #e8f0fc;
+  --tone-on: #fff;
+}
+
+.statistics-tone--yellow {
+  --tone: #f2b705;
+  --tone-ink: #8a5a08;
+  --tone-bg: #fff6d6;
+  --tone-on: #3d2b00;
+}
+
+.statistics-tone--red {
+  --tone: #d6342c;
+  --tone-ink: #b42318;
+  --tone-bg: #fdecea;
+  --tone-on: #fff;
+}
+
+/* Nos cartões (amarelo e vermelho) o ícone vira um cartão preenchido. */
+.statistics-tone--yellow .statistics-section-heading__icon svg,
+.statistics-tone--red .statistics-section-heading__icon svg {
+  fill: var(--tone);
+}
+
+/* ---------- Painel (cartão branco) ---------- */
+
+.statistics-panel {
+  min-width: 0;
+  padding: 22px;
 
   border: 1px solid var(--public-border);
   border-radius: 14px;
@@ -41,46 +88,37 @@
   box-shadow: 0 3px 12px rgb(16 28 50 / 4%);
 }
 
-.statistics-header > div {
-  min-width: 0;
-}
-*/
-.statistics-eyebrow {
-  display: inline-block;
-  margin-bottom: 9px;
-
-  color: var(--public-green);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.statistics-header h1 {
-  margin: 0;
-
-  color: var(--public-navy);
-  font-size: clamp(24px, 3vw, 32px);
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.statistics-header p {
-  margin: 9px 0 0;
-
-  color: var(--public-muted);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* ---------- Títulos compartilhados ---------- */
+/* ---------- Título de seção ---------- */
 
 .statistics-section-heading {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  gap: 14px;
 
   margin-bottom: 18px;
+}
+
+.statistics-section-heading__icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  background: var(--tone-bg, var(--public-green-light));
+  color: var(--tone-ink, var(--public-green));
+}
+
+.statistics-section-heading__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 0;
 }
 
 .statistics-section-heading h2 {
@@ -89,7 +127,7 @@
   color: var(--public-navy);
   font-size: 19px;
   font-weight: 800;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .statistics-section-heading p {
@@ -97,10 +135,30 @@
 
   color: var(--public-muted);
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-/* ---------- Estados de carregamento e erro ---------- */
+.statistics-section-heading__aside {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+/* ---------- Texto só para leitores de tela ---------- */
+
+.statistics-visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Estados de carregamento, erro e vazio ---------- */
 
 .statistics-state {
   display: flex;
@@ -113,7 +171,7 @@
   padding: 28px;
 
   border: 1px solid var(--public-border);
-  border-radius: 12px;
+  border-radius: 14px;
 
   background: #fff;
   text-align: center;
@@ -171,16 +229,24 @@
 /* ---------- Celular ---------- */
 
 @media (max-width: 680px) {
-  .statistics-header {
-    padding: 20px;
-  }
-
-  .statistics-header p {
-    font-size: 13px;
-  }
-
   .statistics-content {
-    padding-top: 18px;
+    padding-top: 12px;
+  }
+
+  .statistics-panel {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .statistics-section-heading {
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .statistics-section-heading__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
   }
 
   .statistics-section-heading h2 {
@@ -189,21 +255,30 @@
 }
 
 @media (max-width: 480px) {
-  .statistics-header {
-    padding: 17px;
-    border-radius: 10px;
-  }
-
-  .statistics-header h1 {
-    font-size: 24px;
-  }
-
-  .statistics-eyebrow {
-    font-size: 10px;
-  }
-
   .statistics-state {
     min-height: 190px;
     padding: 20px;
+  }
+
+  /* O destaque à direita desce para baixo do título. */
+  .statistics-section-heading {
+    flex-wrap: wrap;
+  }
+
+  .statistics-section-heading__aside {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* ---------- Movimento reduzido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .statistics-page * {
+    transition: none !important;
+  }
+
+  .statistics-loading-spinner {
+    animation-duration: 2s;
   }
 }

@@ -1,12 +1,12 @@
 /* ============================================================
    Estatísticas das equipes
-   Destaques, gols marcados, gols sofridos e médias.
+   Destaques de ataque e defesa e tabela de gols por equipe.
    ============================================================ */
 
 .statistics-teams {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 32px;
 
   width: 100%;
   min-width: 0;
@@ -25,171 +25,295 @@
 /* ---------- Cartão de destaque ---------- */
 
 .statistics-teams__highlight {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+  display: grid;
+  grid-template-areas: 'icon body value';
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
 
   min-width: 0;
   padding: 16px;
 
   border: 1px solid var(--public-border);
-  border-left: 4px solid var(--public-green);
-  border-radius: 10px;
+  border-left: 5px solid var(--tone);
+  border-radius: 12px;
 
   background: #fff;
 
   box-shadow: 0 3px 12px rgb(16 28 50 / 4%);
 
   transition:
-    border-color 0.18s ease,
     box-shadow 0.18s ease,
     transform 0.18s ease;
 }
 
-/* Hover */
-
 .statistics-teams__highlight:hover {
-  border-color: rgb(23 107 69 / 35%);
-
   box-shadow: 0 6px 18px rgb(16 28 50 / 7%);
-
   transform: translateY(-2px);
 }
 
-/* ---------- Tipo do destaque ---------- */
+/* Ícone (verde = bom, vermelho = ponto fraco) */
 
-.statistics-teams__highlight > span {
-  color: var(--public-muted);
-  font-size: 10px;
+.statistics-teams__highlight-icon {
+  display: grid;
+  grid-area: icon;
+  place-items: center;
+
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+
+  background: var(--tone-bg);
+  color: var(--tone-ink);
+}
+
+/* Texto: tipo, equipe e explicação */
+
+.statistics-teams__highlight-body {
+  display: flex;
+  grid-area: body;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.statistics-teams__highlight-title {
+  color: var(--tone-ink);
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.05em;
-  line-height: 1.5;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
-/* ---------- Nome da equipe ---------- */
-
-.statistics-teams__highlight > strong {
+.statistics-teams__highlight-team {
   color: var(--public-navy);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
-  line-height: 1.4;
+  line-height: 1.3;
 
   overflow-wrap: anywhere;
 }
 
-/* ---------- Média ---------- */
-
-.statistics-teams__highlight > p {
-  margin: 0;
-
+.statistics-teams__highlight-body small {
   color: var(--public-muted);
   font-size: 12px;
   line-height: 1.5;
 }
 
-/* ---------- Lista completa das equipes ---------- */
+/* Número principal: média de gols por jogo */
 
-.statistics-teams__list {
+.statistics-teams__highlight-value {
   display: flex;
+  grid-area: value;
   flex-direction: column;
-  gap: 12px;
+  align-items: flex-end;
+  gap: 2px;
 
-  width: 100%;
-  min-width: 0;
+  text-align: right;
 }
 
-/* ---------- Cartão de números da equipe ---------- */
+.statistics-teams__highlight-value strong {
+  color: var(--tone-ink);
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  line-height: 1;
+}
 
-.statistics-teams__item {
-  min-width: 0;
-  padding: 18px;
+.statistics-teams__highlight-value span {
+  color: var(--public-muted);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Tabela ---------- */
+
+.statistics-teams__table-wrap {
+  overflow-x: auto;
 
   border: 1px solid var(--public-border);
-  border-radius: 11px;
+  border-radius: 12px;
 
   background: #fff;
 
   box-shadow: 0 3px 12px rgb(16 28 50 / 4%);
-
-  transition:
-    border-color 0.18s ease,
-    box-shadow 0.18s ease;
 }
 
-/* Hover */
+.statistics-teams__table {
+  width: 100%;
 
-.statistics-teams__item:hover {
-  border-color: rgb(23 107 69 / 30%);
-  box-shadow: 0 6px 18px rgb(16 28 50 / 6%);
+  border-collapse: collapse;
+  font-size: 13px;
 }
 
-/* ---------- Nome da equipe ---------- */
-
-.statistics-teams__item h3 {
-  margin: 0 0 16px;
-
-  color: var(--public-navy);
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.4;
-
-  overflow-wrap: anywhere;
-}
-
-/* ---------- Grade dos números ---------- */
-
-.statistics-teams__numbers {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
-}
-
-/* ---------- Indicador individual ---------- */
-
-.statistics-teams__numbers > div {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-
-  min-width: 0;
+.statistics-teams__table th,
+.statistics-teams__table td {
   padding: 12px;
 
-  border: 1px solid var(--public-border);
-  border-radius: 8px;
+  border-bottom: 1px solid var(--public-border);
 
-  background: #f8fafc;
-
-  transition:
-    background-color 0.15s ease,
-    border-color 0.15s ease;
+  text-align: center;
+  vertical-align: middle;
 }
 
-/* Hover do indicador */
+/* Cabeçalho */
 
-.statistics-teams__numbers > div:hover {
-  border-color: rgb(23 107 69 / 25%);
-  background: var(--public-green-light);
-}
+.statistics-teams__table thead th {
+  background: #f6f8fa;
 
-/* Nome do indicador */
-
-.statistics-teams__numbers span {
   color: var(--public-muted);
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.statistics-teams__table abbr {
+  text-decoration: none;
+}
+
+/* Última linha sem borda */
+
+.statistics-teams__table tbody tr:last-child th,
+.statistics-teams__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.statistics-teams__table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.statistics-teams__table tbody tr:hover {
+  background: rgb(23 107 69 / 4%);
+}
+
+/* Coluna da equipe */
+
+.statistics-teams__table .statistics-teams__col-team {
+  min-width: 150px;
+  text-align: left;
+}
+
+.statistics-teams__table tbody .statistics-teams__col-team {
+  display: table-cell;
+
+  font-weight: 400;
+}
+
+.statistics-teams__col-team strong {
+  display: block;
+
+  color: var(--public-navy);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
+}
+
+/* Médias mostradas abaixo do nome só no celular */
+
+.statistics-teams__mobile-average {
+  display: none;
+
+  margin-top: 3px;
+
+  color: var(--public-muted);
+  font-size: 11px;
   line-height: 1.4;
 }
 
-/* Valor */
+/* Posição */
 
-.statistics-teams__numbers strong {
-  color: var(--public-navy);
-  font-size: 19px;
+.statistics-teams__position {
+  display: inline-grid;
+  place-items: center;
+
+  width: 26px;
+  height: 26px;
+
+  border-radius: 7px;
+
+  background: var(--public-green-light);
+  color: var(--public-green);
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Gols marcados e sofridos: número + barra de comparação */
+
+.statistics-teams__goals {
+  min-width: 96px;
+}
+
+.statistics-teams__goals strong {
+  display: block;
+
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
   font-weight: 800;
   line-height: 1.2;
+}
 
-  overflow-wrap: anywhere;
+.statistics-teams__goals--for strong {
+  color: var(--public-green);
+}
+
+.statistics-teams__goals--against strong {
+  color: #b42318;
+}
+
+.statistics-teams__bar {
+  display: block;
+
+  width: 100%;
+  max-width: 84px;
+  height: 5px;
+  margin: 6px auto 0;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #eef1f4;
+}
+
+.statistics-teams__bar i {
+  display: block;
+
+  height: 100%;
+
+  border-radius: inherit;
+}
+
+.statistics-teams__goals--for .statistics-teams__bar i {
+  background: var(--public-green);
+}
+
+.statistics-teams__goals--against .statistics-teams__bar i {
+  background: #d6342c;
+}
+
+/* Rótulo abreviado só no celular */
+
+.statistics-teams__short {
+  display: none;
+}
+
+/* Legenda */
+
+.statistics-teams__legend {
+  margin: 10px 2px 0;
+
+  color: var(--public-muted);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 /* ---------- Estado vazio ---------- */
@@ -208,35 +332,78 @@
   text-align: center;
 }
 
-/* ---------- Tablet ---------- */
+/* ---------- Tablet e celular ---------- */
 
-@media (max-width: 1000px) {
-  .statistics-teams__numbers {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (max-width: 720px) {
+  .statistics-teams {
+    gap: 26px;
   }
-}
 
-/* ---------- Celular ---------- */
-
-@media (max-width: 680px) {
   .statistics-teams__highlights {
     grid-template-columns: minmax(0, 1fr);
   }
+}
 
-  .statistics-teams__item {
-    padding: 15px;
+@media (max-width: 640px) {
+  /* Tabela enxuta: médias saem das colunas e vão para baixo do nome. */
+  .statistics-teams__col-average {
+    display: none;
   }
 
-  .statistics-teams__numbers {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+  .statistics-teams__mobile-average {
+    display: block;
   }
 
-  .statistics-teams__numbers > div {
-    padding: 11px;
+  .statistics-teams__long {
+    display: none;
   }
 
-  .statistics-teams__numbers strong {
-    font-size: 17px;
+  .statistics-teams__short {
+    display: inline;
+  }
+
+  .statistics-teams__table th,
+  .statistics-teams__table td {
+    padding: 10px 7px;
+  }
+
+  .statistics-teams__table .statistics-teams__col-team {
+    min-width: 0;
+  }
+
+  .statistics-teams__goals {
+    min-width: 54px;
+  }
+
+  .statistics-teams__goals strong {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 520px) {
+  /* Destaque em duas linhas: ícone e texto em cima, número embaixo. */
+  .statistics-teams__highlight {
+    grid-template-areas:
+      'icon body'
+      'value value';
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .statistics-teams__highlight-value {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 7px;
+
+    padding-top: 10px;
+
+    border-top: 1px solid var(--public-border);
+
+    text-align: left;
+  }
+
+  .statistics-teams__highlight-value strong {
+    font-size: 24px;
   }
 }

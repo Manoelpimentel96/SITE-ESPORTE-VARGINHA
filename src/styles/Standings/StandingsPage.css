@@ -1,0 +1,828 @@
+/* ============================================================
+   SITE ESPORTE VARGINHA
+   Tela pública de classificação e carrossel de partidas
+   Arquivo: StandingsPage.css
+   ============================================================ */
+
+/* ============================================================
+   1. CONTAINER GERAL DA CLASSIFICAÇÃO
+   ============================================================ */
+
+.standings-page,
+.standings-match-carousel-area {
+  width: 100%;
+  min-width: 0;
+}
+
+.standings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ============================================================
+   2. TABELA DE CLASSIFICAÇÃO
+   ============================================================ */
+
+.public-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  background: var(--public-surface, #ffffff);
+  border: 1px solid var(--public-border, #e2e8f0);
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 18px rgba(15, 23, 42, 0.045),
+    0 1px 3px rgba(15, 23, 42, 0.025);
+
+  scrollbar-width: thin;
+  scrollbar-color: #a8b8c8 transparent;
+}
+
+.public-table-wrap::-webkit-scrollbar {
+  height: 7px;
+}
+
+.public-table-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.public-table-wrap::-webkit-scrollbar-thumb {
+  background: #a8b8c8;
+  border-radius: 20px;
+}
+
+.public-table {
+  width: 100%;
+  min-width: 720px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  color: var(--public-text, #26364a);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Cabeçalho da tabela */
+
+.public-table thead {
+  background: var(--public-primary, #102b4e);
+}
+
+.public-table thead th {
+  padding: 16px 13px;
+
+  color: #ffffff;
+  background: var(--public-primary, #102b4e);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.public-table thead th:first-child {
+  border-top-left-radius: 15px;
+}
+
+.public-table thead th:last-child {
+  border-top-right-radius: 15px;
+}
+
+/* Coluna da posição */
+
+.public-table tbody td:first-child {
+  width: 55px;
+
+  color: var(--public-muted, #718096);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Coluna da equipe */
+
+.public-table tbody td:nth-child(2) {
+  min-width: 190px;
+  text-align: left;
+}
+
+/* Pontuação */
+
+.public-table tbody td:nth-child(3) {
+  color: var(--public-primary, #102b4e);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* Linhas */
+
+.public-table tbody td {
+  padding: 15px 13px;
+
+  background: #ffffff;
+  border-bottom: 1px solid var(--public-border, #edf1f5);
+
+  white-space: nowrap;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.public-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.public-table tbody tr:hover td {
+  background: #f3f8f6;
+}
+
+.public-table tbody tr:hover td:first-child {
+  color: var(--public-accent, #176b45);
+}
+
+/* Equipe e escudo */
+
+.public-player-name {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  min-width: 0;
+}
+
+.public-player-name strong {
+  overflow: hidden;
+
+  color: var(--public-text, #26364a);
+  font-size: 13px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+}
+
+/* Escudo da equipe */
+
+.public-player-photo {
+  display: block;
+  flex: 0 0 34px;
+
+  width: 34px;
+  height: 34px;
+
+  object-fit: contain;
+  object-position: center;
+
+  border-radius: 50%;
+  background: #f5f7fa;
+  border: 1px solid #e7edf3;
+
+  padding: 3px;
+}
+
+/* ============================================================
+   3. ÁREA DO CARROSSEL DE PARTIDAS
+   ============================================================ */
+
+.standings-match-carousel-area {
+  width: 100%;
+  min-width: 0;
+
+  margin-top: 30px;
+  padding-bottom: 8px;
+}
+
+.standings-match-carousel {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  background: var(--public-surface, #ffffff);
+  border: 1px solid var(--public-border, #e2e8f0);
+  border-radius: 20px;
+
+  box-shadow:
+    0 5px 22px rgba(15, 23, 42, 0.045),
+    0 1px 3px rgba(15, 23, 42, 0.025);
+}
+
+/* ============================================================
+   4. CABEÇALHO DA SEÇÃO DE PARTIDAS
+   ============================================================ */
+
+.standings-match-carousel__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 25px 28px;
+
+  background: linear-gradient(
+    120deg,
+    #102b4e 0%,
+    #173b62 58%,
+    #176b45 100%
+  );
+
+  color: #ffffff;
+}
+
+.standings-match-carousel__heading > div {
+  min-width: 0;
+}
+
+.standings-match-carousel__heading > div > span {
+  display: inline-block;
+  margin-bottom: 8px;
+
+  color: #b9e6ce;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.standings-match-carousel__heading h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(20px, 2.5vw, 27px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.standings-match-carousel__heading p {
+  margin: 8px 0 0;
+
+  color: rgba(255, 255, 255, 0.76);
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Quantidade de partidas */
+
+.standings-match-carousel__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  min-height: 36px;
+  padding: 0 14px;
+
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.13);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   5. ÁREA DE MOVIMENTO DO CARROSSEL INFINITO
+   ============================================================ */
+
+.standings-match-carousel__viewport {
+  position: relative;
+
+  width: 100%;
+  overflow: hidden;
+
+  padding: 25px 0 30px;
+
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #ffffff 100%
+  );
+}
+
+/* Gradiente nas extremidades */
+
+.standings-match-carousel__viewport::before,
+.standings-match-carousel__viewport::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  z-index: 2;
+
+  width: 35px;
+
+  content: "";
+  pointer-events: none;
+}
+
+.standings-match-carousel__viewport::before {
+  left: 0;
+
+  background: linear-gradient(
+    90deg,
+    #f8fafc 0%,
+    rgba(248, 250, 252, 0) 100%
+  );
+}
+
+.standings-match-carousel__viewport::after {
+  right: 0;
+
+  background: linear-gradient(
+    270deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Faixa animada */
+
+.standings-match-carousel__track {
+  display: flex;
+  align-items: stretch;
+
+  gap: 18px;
+
+  width: max-content;
+  padding: 0;
+
+  animation: standings-match-scroll 45s linear infinite;
+
+  will-change: transform;
+}
+
+/* Pausa ao passar o mouse */
+
+.standings-match-carousel__viewport:hover
+  .standings-match-carousel__track {
+  animation-play-state: paused;
+}
+
+/* Pausa quando houver foco por teclado */
+
+.standings-match-carousel__viewport:focus-within
+  .standings-match-carousel__track {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   6. CARTÃO INDIVIDUAL DA PARTIDA
+   ============================================================ */
+
+.standings-match-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  flex: 0 0 310px;
+  width: 310px;
+  min-height: 220px;
+
+  padding: 17px 18px;
+
+  background: #ffffff;
+  border: 1px solid #e5ebf1;
+  border-radius: 15px;
+
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.045),
+    0 1px 3px rgba(15, 23, 42, 0.025);
+
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.standings-match-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #b8d9c8;
+
+  box-shadow:
+    0 12px 26px rgba(15, 23, 42, 0.09),
+    0 3px 8px rgba(15, 23, 42, 0.035);
+}
+
+/* ============================================================
+   7. CABEÇALHO DO CARTÃO
+   ============================================================ */
+
+.standings-match-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding-bottom: 13px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.standings-match-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #526276;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.055em;
+  white-space: nowrap;
+}
+
+/* Indicador AO VIVO */
+
+.standings-match-card__live-indicator {
+  position: relative;
+
+  width: 8px;
+  height: 8px;
+
+  flex-shrink: 0;
+
+  background: #e53935;
+  border-radius: 50%;
+
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.12);
+}
+
+.standings-match-card--live
+  .standings-match-card__status {
+  color: #d62828;
+}
+
+/* Hierarquia da competição */
+
+.standings-match-card__hierarchy {
+  overflow: hidden;
+
+  color: #7b8999;
+
+  font-size: 10px;
+  font-weight: 600;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   8. EQUIPES E PLACAR
+   ============================================================ */
+
+.standings-match-card__teams {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 66px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+
+  flex: 1;
+
+  padding: 18px 0;
+}
+
+/* Equipe */
+
+.standings-match-card__team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+
+  min-width: 0;
+  text-align: center;
+}
+
+.standings-match-card__team img {
+  display: block;
+
+  width: 48px;
+  height: 48px;
+
+  object-fit: contain;
+  object-position: center;
+
+  padding: 5px;
+
+  background: #f6f8fa;
+  border: 1px solid #e8edf2;
+  border-radius: 50%;
+}
+
+/* Nome */
+
+.standings-match-card__team strong {
+  display: block;
+
+  width: 100%;
+  overflow: hidden;
+
+  color: #26364a;
+
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Escudo sem imagem */
+
+.standings-match-card__crest-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  color: #176b45;
+  background: #eaf5ee;
+
+  border: 1px solid #d5eadc;
+  border-radius: 50%;
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+/* Placar */
+
+.standings-match-card__score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.standings-match-card__score > strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  color: #102b4e;
+
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+.standings-match-card__score > strong span {
+  color: #a0adbb;
+  font-size: 17px;
+}
+
+/* VS para partidas sem placar */
+
+.standings-match-card__score
+  .standings-match-card__versus {
+  color: #176b45;
+
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+/* Partida encerrada */
+
+.standings-match-card--finished
+  .standings-match-card__score > strong {
+  color: #176b45;
+}
+
+/* ============================================================
+   9. RODAPÉ DO CARTÃO
+   ============================================================ */
+
+.standings-match-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #edf1f5;
+}
+
+.standings-match-card__footer span {
+  display: block;
+  overflow: hidden;
+
+  color: #748397;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.5;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Data */
+
+.standings-match-card__footer span:first-child {
+  color: #43566c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   10. ANIMAÇÃO CONTÍNUA
+   ============================================================ */
+
+@keyframes standings-match-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 9px));
+  }
+}
+
+/* ============================================================
+   11. RESPONSIVIDADE — TABLETS
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .standings-match-carousel-area {
+    margin-top: 24px;
+  }
+
+  .standings-match-carousel__heading {
+    padding: 22px;
+  }
+
+  .standings-match-carousel__viewport {
+    padding: 22px 0 26px;
+  }
+
+  .standings-match-card {
+    flex-basis: 290px;
+    width: 290px;
+  }
+
+  .standings-match-carousel__track {
+    gap: 15px;
+    animation-duration: 38s;
+  }
+}
+
+/* ============================================================
+   12. RESPONSIVIDADE — CELULARES
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .public-table-wrap {
+    border-radius: 12px;
+  }
+
+  .public-table {
+    min-width: 680px;
+    font-size: 12px;
+  }
+
+  .public-table thead th {
+    padding: 13px 10px;
+    font-size: 10px;
+  }
+
+  .public-table tbody td {
+    padding: 12px 10px;
+  }
+
+  .public-player-name {
+    gap: 8px;
+  }
+
+  .public-player-name strong {
+    font-size: 12px;
+  }
+
+  .public-player-photo {
+    flex-basis: 29px;
+    width: 29px;
+    height: 29px;
+  }
+
+  .standings-match-carousel-area {
+    margin-top: 20px;
+  }
+
+  .standings-match-carousel {
+    border-radius: 15px;
+  }
+
+  .standings-match-carousel__heading {
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 20px 17px;
+  }
+
+  .standings-match-carousel__heading h2 {
+    font-size: 20px;
+  }
+
+  .standings-match-carousel__heading p {
+    max-width: 230px;
+    font-size: 12px;
+  }
+
+  .standings-match-carousel__count {
+    min-height: 30px;
+    padding: 0 10px;
+
+    font-size: 10px;
+  }
+
+  .standings-match-carousel__viewport {
+    padding: 18px 0 22px;
+  }
+
+  .standings-match-carousel__viewport::before,
+  .standings-match-carousel__viewport::after {
+    width: 18px;
+  }
+
+  .standings-match-carousel__track {
+    gap: 12px;
+    animation-duration: 34s;
+  }
+
+  .standings-match-card {
+    flex-basis: 270px;
+    width: 270px;
+    min-height: 210px;
+
+    padding: 15px;
+    border-radius: 13px;
+  }
+
+  .standings-match-card__teams {
+    grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1fr);
+    gap: 5px;
+
+    padding: 16px 0;
+  }
+
+  .standings-match-card__team img,
+  .standings-match-card__crest-empty {
+    width: 42px;
+    height: 42px;
+  }
+
+  .standings-match-card__team strong {
+    font-size: 11px;
+  }
+
+  .standings-match-card__score > strong {
+    gap: 6px;
+    font-size: 21px;
+  }
+
+  .standings-match-card__score > strong span {
+    font-size: 15px;
+  }
+
+  .standings-match-card__hierarchy {
+    max-width: 125px;
+    font-size: 9px;
+  }
+}
+
+/* ============================================================
+   13. ACESSIBILIDADE — REDUÇÃO DE MOVIMENTO
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .standings-match-carousel__track {
+    animation: none;
+    transform: none;
+  }
+
+  .standings-match-card,
+  .public-table tbody td {
+    transition: none;
+  }
+}

@@ -1,17 +1,19 @@
 /* ============================================================
    Navegação das estatísticas
-   Abas horizontais, seleção, hover e acessibilidade.
+   Abas em formato de botões, uma cor por categoria.
+   Rola na horizontal no celular, sem barra de rolagem visível.
    ============================================================ */
 
 .statistics-navigation {
+  position: relative; /* referência para centralizar a aba ativa */
+
   display: flex;
   flex-direction: row;
-  align-items: stretch;
-  gap: 4px;
+  align-items: center;
+  gap: 8px;
 
   margin: 18px 0 0;
-
-  border-bottom: 1px solid var(--public-border);
+  padding: 4px 2px 10px;
 
   overflow-x: auto;
   overflow-y: hidden;
@@ -29,87 +31,89 @@
 
 .statistics-navigation__item {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
-  justify-content: center;
   gap: 9px;
 
-  flex: 0 0 auto;
-  scroll-snap-align: center;
+  padding: 10px 16px;
 
-  padding: 13px 16px;
+  border: 1px solid var(--public-border);
+  border-radius: 999px;
 
-  border: 0;
-  border-bottom: 3px solid transparent;
-  border-radius: 7px 7px 0 0;
+  background: #fff;
 
-  background: transparent;
-
-  color: #586575;
+  color: #4a5a6b;
   font: inherit;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
 
   cursor: pointer;
+  scroll-snap-align: center;
 
   transition:
-    color 0.15s ease,
     background-color 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    color 0.15s ease;
 }
 
 .statistics-navigation__item svg {
   flex: 0 0 auto;
-  color: currentColor;
-  transition: transform 0.15s ease;
+  color: var(--tone-ink);
+}
+
+/* Cartões amarelo e vermelho: o ícone fica preenchido, como um cartão. */
+.statistics-navigation__icon--card {
+  fill: var(--tone);
 }
 
 /* ---------- Hover ---------- */
 
 .statistics-navigation__item:hover {
+  border-color: var(--tone);
   color: var(--public-navy);
-  background: rgb(16 28 50 / 4%);
-}
-
-.statistics-navigation__item:hover svg {
-  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgb(16 28 50 / 8%);
 }
 
 /* ---------- Foco pelo teclado ---------- */
 
 .statistics-navigation__item:focus-visible {
   outline: 2px solid var(--public-green);
-  outline-offset: -2px;
+  outline-offset: 2px;
 }
 
 /* ---------- Aba ativa ---------- */
 
-.statistics-navigation__item--active {
-  color: var(--public-green);
-  border-bottom-color: var(--public-green);
+.statistics-navigation__item--active,
+.statistics-navigation__item--active:hover {
+  border-color: var(--tone);
 
-  background: linear-gradient(
-    transparent,
-    var(--public-green-light)
-  );
+  background: var(--tone);
+  color: var(--tone-on);
 
-  font-weight: 800;
+  box-shadow: 0 5px 14px rgb(16 28 50 / 16%);
 }
 
-.statistics-navigation__item--active:hover {
-  color: var(--public-green);
-  background: linear-gradient(
-    transparent,
-    var(--public-green-light)
-  );
+.statistics-navigation__item--active svg {
+  color: var(--tone-on);
+}
+
+.statistics-navigation__item--active .statistics-navigation__icon--card {
+  fill: var(--tone-on);
 }
 
 /* ---------- Celular ---------- */
 
 @media (max-width: 680px) {
+  .statistics-navigation {
+    margin-top: 14px;
+    padding-bottom: 8px;
+  }
+
   .statistics-navigation__item {
     gap: 7px;
-    padding: 12px 13px;
+    padding: 9px 13px;
     font-size: 12px;
   }
 

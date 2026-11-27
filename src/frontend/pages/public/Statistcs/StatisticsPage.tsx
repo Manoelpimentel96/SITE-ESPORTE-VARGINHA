@@ -12,6 +12,8 @@
 
 import { useCallback, useState } from 'react'
 
+import { Handshake, Square } from 'lucide-react'
+
 import { publicService } from '../../../../services/public/publicService'
 
 import type {
@@ -54,7 +56,7 @@ export default function StatisticsPage() {
   if (loading) {
     return (
       <section className="statistics-page">
-        <div className="statistics-state">
+        <div className="statistics-state" role="status">
           <span className="statistics-loading-spinner" />
 
           <p>Carregando estatísticas...</p>
@@ -66,7 +68,10 @@ export default function StatisticsPage() {
   if (error) {
     return (
       <section className="statistics-page">
-        <div className="statistics-state statistics-state--error">
+        <div
+          className="statistics-state statistics-state--error"
+          role="alert"
+        >
           <h2>
             Não foi possível carregar as estatísticas
           </h2>
@@ -114,7 +119,11 @@ export default function StatisticsPage() {
           <StatisticsCategory
             title="Líderes em assistências"
             description="Jogadores com mais assistências na temporada."
-            leaders={statistics.assists.leaders}
+            category={statistics.assists}
+            tone="assist"
+            icon={Handshake}
+            singularLabel="assistência"
+            pluralLabel="assistências"
             emptyMessage="Nenhuma assistência registrada."
           />
         )}
@@ -123,7 +132,11 @@ export default function StatisticsPage() {
           <StatisticsCategory
             title="Cartões amarelos"
             description="Jogadores com maior número de cartões amarelos."
-            leaders={statistics.yellowCards.leaders}
+            category={statistics.yellowCards}
+            tone="yellow"
+            icon={Square}
+            singularLabel="cartão"
+            pluralLabel="cartões"
             emptyMessage="Nenhum cartão amarelo registrado."
           />
         )}
@@ -132,7 +145,11 @@ export default function StatisticsPage() {
           <StatisticsCategory
             title="Cartões vermelhos"
             description="Jogadores com maior número de cartões vermelhos."
-            leaders={statistics.redCards.leaders}
+            category={statistics.redCards}
+            tone="red"
+            icon={Square}
+            singularLabel="cartão"
+            pluralLabel="cartões"
             emptyMessage="Nenhum cartão vermelho registrado."
           />
         )}

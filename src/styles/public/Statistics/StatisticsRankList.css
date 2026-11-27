@@ -1,6 +1,6 @@
 /* ============================================================
    Lista de rankings
-   Posição, jogador, equipe e quantidade registrada.
+   Posição, jogador, equipe, quantidade e barra de comparação.
    ============================================================ */
 
 .statistics-rank-list {
@@ -9,6 +9,10 @@
 
   width: 100%;
   min-width: 0;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
 }
 
 /* ---------- Item do ranking ---------- */
@@ -20,43 +24,56 @@
   gap: 13px;
 
   min-width: 0;
-  padding: 14px 8px;
+  padding: 13px 8px;
 
   border-bottom: 1px solid var(--public-border);
   border-radius: 6px;
 
-  transition:
-    background-color 0.15s ease,
-    border-color 0.15s ease;
+  transition: background-color 0.15s ease;
 }
 
 .statistics-rank-list__item:last-child {
   border-bottom: 0;
 }
 
-/* ---------- Hover ---------- */
-
 .statistics-rank-list__item:hover {
-  background: rgb(23 107 69 / 4%);
+  background: rgb(16 28 50 / 3%);
 }
 
 /* ---------- Posição ---------- */
 
 .statistics-rank-list__position {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 
   width: 29px;
   height: 29px;
 
-  border-radius: 7px;
+  border-radius: 8px;
 
-  background: var(--public-green-light);
-  color: var(--public-green);
+  background: var(--public-background);
+  color: var(--public-muted);
 
   font-size: 12px;
+  font-variant-numeric: tabular-nums;
   font-weight: 800;
+}
+
+/* Ouro, prata e bronze */
+
+.statistics-rank-list__position--1 {
+  background: var(--stats-gold-bg);
+  color: var(--stats-gold-ink);
+}
+
+.statistics-rank-list__position--2 {
+  background: var(--stats-silver-bg);
+  color: #4d5965;
+}
+
+.statistics-rank-list__position--3 {
+  background: var(--stats-bronze-bg);
+  color: #86501f;
 }
 
 /* ---------- Dados do jogador ---------- */
@@ -64,64 +81,82 @@
 .statistics-rank-list__player {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 
   min-width: 0;
 }
-
-/* Nome */
 
 .statistics-rank-list__player strong {
   overflow: hidden;
 
   color: var(--public-navy);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.35;
 
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* Equipe */
-
-.statistics-rank-list__player span {
+.statistics-rank-list__player > span {
   overflow: hidden;
 
   color: var(--public-muted);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.4;
 
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* ---------- Valor do ranking ---------- */
+/* ---------- Barra de comparação com o líder ---------- */
+
+.statistics-rank-list__bar {
+  width: 100%;
+  height: 5px;
+  margin-top: 4px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #eef1f4;
+}
+
+.statistics-rank-list__bar span {
+  display: block;
+
+  height: 100%;
+  min-width: 4px;
+
+  border-radius: inherit;
+
+  background: var(--tone);
+}
+
+/* ---------- Valor ---------- */
 
 .statistics-rank-list__value {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 3px;
+  gap: 2px;
 
-  min-width: 55px;
+  min-width: 62px;
   text-align: right;
 }
 
-/* Número */
-
 .statistics-rank-list__value strong {
-  color: var(--public-green);
-  font-size: 18px;
+  color: var(--tone-ink);
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.1;
 }
-
-/* Unidade: gols, assistências, registros etc. */
 
 .statistics-rank-list__value span {
   color: var(--public-muted);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -132,7 +167,7 @@
   padding: 24px 16px;
 
   border: 1px dashed var(--public-border);
-  border-radius: 9px;
+  border-radius: 10px;
 
   background: #fafbfd;
 
@@ -152,20 +187,21 @@
   }
 
   .statistics-rank-list__position {
-    width: 25px;
-    height: 25px;
+    width: 26px;
+    height: 26px;
+
     font-size: 11px;
   }
 
   .statistics-rank-list__player strong {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .statistics-rank-list__value {
-    min-width: 45px;
+    min-width: 50px;
   }
 
   .statistics-rank-list__value strong {
-    font-size: 16px;
+    font-size: 18px;
   }
 }

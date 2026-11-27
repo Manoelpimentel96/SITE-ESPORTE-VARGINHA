@@ -1,29 +1,177 @@
 /* ============================================================
-   Estatísticas dos jogadores
-   Artilharia geral e artilharia por equipe.
+   Gols e artilharia
+   Pódio, artilharia geral e artilharia por equipe.
    ============================================================ */
 
 .statistics-players {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 32px;
 
   width: 100%;
   min-width: 0;
 }
 
-/* ---------- Artilharia geral ---------- */
+/* ---------- Total de gols da temporada (destaque do título) ---------- */
 
-.statistics-players__general {
-  min-width: 0;
-  padding: 22px;
+.statistics-players__season-goals {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
 
-  border: 1px solid var(--public-border);
+  padding: 7px 14px;
+
   border-radius: 12px;
 
-  background: #fff;
+  background: var(--public-green-light);
+}
 
-  box-shadow: 0 3px 12px rgb(16 28 50 / 4%);
+.statistics-players__season-goals strong {
+  color: var(--public-green);
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.statistics-players__season-goals span {
+  color: var(--public-muted);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Pódio ---------- */
+
+.statistics-players__podium {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+
+  margin: 0 0 8px;
+  padding: 0;
+
+  list-style: none;
+}
+
+.statistics-players__podium-item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  min-width: 0;
+  padding: 18px 14px 16px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--public-border);
+  border-radius: 14px;
+
+  background: #fff;
+  text-align: center;
+}
+
+/* Faixa de cor no topo de cada posição */
+.statistics-players__podium-item::before {
+  content: '';
+
+  position: absolute;
+  inset: 0 0 auto;
+
+  height: 4px;
+
+  background: var(--podium-color);
+}
+
+.statistics-players__podium-item--1 {
+  --podium-color: var(--stats-gold);
+  --podium-bg: var(--stats-gold-bg);
+
+  border-color: rgb(201 150 43 / 45%);
+
+  background: linear-gradient(180deg, var(--stats-gold-bg), #fff 62%);
+}
+
+.statistics-players__podium-item--2 {
+  --podium-color: var(--stats-silver);
+  --podium-bg: var(--stats-silver-bg);
+}
+
+.statistics-players__podium-item--3 {
+  --podium-color: var(--stats-bronze);
+  --podium-bg: var(--stats-bronze-bg);
+}
+
+/* Medalha */
+
+.statistics-players__podium-medal {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: var(--podium-bg);
+  color: var(--podium-color);
+}
+
+.statistics-players__podium-position {
+  color: var(--podium-color);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.statistics-players__podium-name {
+  max-width: 100%;
+
+  color: var(--public-navy);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.3;
+
+  overflow-wrap: anywhere;
+}
+
+.statistics-players__podium-team {
+  max-width: 100%;
+
+  color: var(--public-muted);
+  font-size: 12px;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+/* Gols do jogador */
+
+.statistics-players__podium-goals {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+
+  margin-top: 6px;
+}
+
+.statistics-players__podium-goals strong {
+  color: var(--public-green);
+  font-size: 32px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.statistics-players__podium-goals span {
+  color: var(--public-muted);
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /* ---------- Artilharia por equipe ---------- */
@@ -31,12 +179,9 @@
 .statistics-players__teams {
   display: flex;
   flex-direction: column;
-  gap: 18px;
 
   min-width: 0;
 }
-
-/* ---------- Grade de equipes ---------- */
 
 .statistics-players__team-grid {
   display: grid;
@@ -46,36 +191,18 @@
   width: 100%;
 }
 
-/* ---------- Cartão da equipe ---------- */
-
-.statistics-players__team-card {
-  min-width: 0;
+.statistics-players__team-card.statistics-panel {
   padding: 18px;
 
-  border: 1px solid var(--public-border);
-  border-radius: 11px;
-
-  background: #fff;
-
-  box-shadow: 0 3px 12px rgb(16 28 50 / 4%);
-
   transition:
-    border-color 0.18s ease,
     box-shadow 0.18s ease,
     transform 0.18s ease;
 }
 
-/* Hover do cartão */
-
 .statistics-players__team-card:hover {
-  border-color: rgb(23 107 69 / 35%);
-
   box-shadow: 0 7px 20px rgb(16 28 50 / 7%);
-
   transform: translateY(-2px);
 }
-
-/* ---------- Cabeçalho do cartão ---------- */
 
 .statistics-players__team-card header {
   display: flex;
@@ -83,13 +210,11 @@
   justify-content: space-between;
   gap: 12px;
 
-  padding-bottom: 14px;
+  padding-bottom: 12px;
   margin-bottom: 4px;
 
   border-bottom: 1px solid var(--public-border);
 }
-
-/* Nome da equipe */
 
 .statistics-players__team-card header h3 {
   min-width: 0;
@@ -103,12 +228,10 @@
   overflow-wrap: anywhere;
 }
 
-/* Quantidade de jogadores */
-
 .statistics-players__team-card header span {
   flex: 0 0 auto;
 
-  padding: 5px 8px;
+  padding: 5px 9px;
 
   border-radius: 20px;
 
@@ -136,7 +259,7 @@
   text-align: center;
 }
 
-/* ---------- Celular e tablet ---------- */
+/* ---------- Tablet ---------- */
 
 @media (max-width: 900px) {
   .statistics-players__team-grid {
@@ -144,16 +267,70 @@
   }
 }
 
-@media (max-width: 560px) {
+/* ---------- Celular ---------- */
+
+@media (max-width: 600px) {
   .statistics-players {
-    gap: 22px;
+    gap: 26px;
   }
 
-  .statistics-players__general {
-    padding: 17px;
+  /* Pódio vira lista: medalha | jogador | gols */
+  .statistics-players__podium {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
   }
 
-  .statistics-players__team-card {
+  .statistics-players__podium-item {
+    display: grid;
+    grid-template-areas:
+      'medal position goals'
+      'medal name goals'
+      'medal team goals';
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 2px;
+
+    padding: 14px;
+
+    text-align: left;
+  }
+
+  .statistics-players__podium-medal {
+    grid-area: medal;
+
+    width: 40px;
+    height: 40px;
+  }
+
+  .statistics-players__podium-position {
+    grid-area: position;
+  }
+
+  .statistics-players__podium-name {
+    grid-area: name;
+
+    font-size: 15px;
+  }
+
+  .statistics-players__podium-team {
+    grid-area: team;
+  }
+
+  .statistics-players__podium-goals {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+    grid-area: goals;
+
+    margin-top: 0;
+  }
+
+  .statistics-players__podium-goals strong {
+    font-size: 28px;
+  }
+
+  .statistics-players__team-card.statistics-panel {
     padding: 15px;
   }
 

@@ -1,11 +1,12 @@
-
 /**
- * Aba de artilharia.
+ * Aba de gols e artilharia.
  *
  * Responsabilidades:
- * - Exibir a artilharia geral.
+ * - Exibir o pódio (três primeiros) e o restante da artilharia geral.
  * - Agrupar os jogadores do ranking por equipe.
  */
+
+import { Medal, Shield, Trophy } from 'lucide-react'
 
 import type {
   PublicStatistics,
@@ -13,6 +14,8 @@ import type {
 } from '../../../../../backend/modules/public/statistics/statistics.types'
 
 import StatisticsRankList from './StatisticsRankList'
+import StatisticsSectionHeading from './StatisticsSectionHeading'
+import { pluralize } from './statistics.utils'
 
 import '../../../../../styles/public/Statistics/StatisticsPlayers.css'
 
@@ -58,36 +61,106 @@ export default function StatisticsPlayers({
 }: StatisticsPlayersProps) {
   const generalRanking = statistics.topScorers
 
+  // Os três primeiros ficam no pódio; o restante segue em lista.
+  const podium = generalRanking.slice(0, 3)
+  const remaining = generalRanking.slice(3)
+  const topValue = generalRanking[0]?.total ?? 0
+
   const teamRankings =
     groupScorersByTeam(generalRanking)
 
   return (
     <div className="statistics-players">
-      <section className="statistics-players__general">
-        <div className="statistics-section-heading">
-          <h2>Artilharia geral</h2>
+      <section className="statistics-players__general statistics-panel">
+        <StatisticsSectionHeading
+          title="Artilharia geral"
+          description="Jogadores com maior número de gols na temporada."
+          icon={Trophy}
+          tone="goal"
+          aside={
+            <div className="statistics-players__season-goals">
+              <strong>{statistics.goals}</strong>
 
-          <p>
-            Jogadores com maior número de gols na temporada.
-          </p>
-        </div>
-
-        <StatisticsRankList
-          leaders={generalRanking}
-          valueLabel="gols"
-          emptyMessage="Nenhum gol registrado na temporada."
+              <span>
+                {pluralize(
+                  statistics.goals,
+                  'gol na temporada',
+                  'gols na temporada',
+                )}
+              </span>
+            </div>
+          }
         />
+
+        {podium.length > 0 && (
+          <ol className="statistics-players__podium">
+            {podium.map((leader, index) => (
+              <li
+                key={`${leader.playerId}-${leader.teamName}`}
+                className={`statistics-players__podium-item statistics-players__podium-item--${index + 1}`}
+              >
+                <span
+                  className="statistics-players__podium-medal"
+                  aria-hidden="true"
+                >
+                  {index === 0 ? (
+                    <Trophy size={20} />
+                  ) : (
+                    <Medal size={20} />
+                  )}
+                </span>
+
+                <span className="statistics-players__podium-position">
+                  {index + 1}º lugar
+                </span>
+
+                <strong className="statistics-players__podium-name">
+                  {leader.name}
+                </strong>
+
+                <span className="statistics-players__podium-team">
+                  {leader.teamName || 'Equipe não identificada'}
+                </span>
+
+                <div className="statistics-players__podium-goals">
+                  <strong>{leader.total}</strong>
+
+                  <span>
+                    {pluralize(leader.total, 'gol', 'gols')}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ol>
+        )}
+
+        {generalRanking.length === 0 && (
+          <StatisticsRankList
+            leaders={[]}
+            valueLabel="gols"
+            emptyMessage="Nenhum gol registrado na temporada."
+          />
+        )}
+
+        {remaining.length > 0 && (
+          <StatisticsRankList
+            leaders={remaining}
+            startAt={4}
+            maxValue={topValue}
+            valueLabel="gols"
+            singularLabel="gol"
+            tone="goal"
+            emptyMessage=""
+          />
+        )}
       </section>
 
       <section className="statistics-players__teams">
-        <div className="statistics-section-heading">
-          <h2>Artilharia por equipe</h2>
-
-          <p>
-            Confira os jogadores que mais marcaram gols
-            em cada equipe.
-          </p>
-        </div>
+        <StatisticsSectionHeading
+          title="Artilharia por equipe"
+          description="Os jogadores que mais marcaram em cada equipe."
+          icon={Shield}
+        />
 
         {!teamRankings.length ? (
           <div className="statistics-players__empty">
@@ -98,19 +171,26 @@ export default function StatisticsPlayers({
             {teamRankings.map((team) => (
               <article
                 key={team.teamName}
-                className="statistics-players__team-card"
+                className="statistics-players__team-card statistics-panel"
               >
                 <header>
                   <h3>{team.teamName}</h3>
 
                   <span>
-                    {team.leaders.length} jogadores
+                    {team.leaders.length}{' '}
+                    {pluralize(
+                      team.leaders.length,
+                      'jogador',
+                      'jogadores',
+                    )}
                   </span>
                 </header>
 
                 <StatisticsRankList
                   leaders={team.leaders}
                   valueLabel="gols"
+                  singularLabel="gol"
+                  tone="goal"
                   emptyMessage="Nenhum gol registrado."
                 />
               </article>
